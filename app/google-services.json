@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "482673168731",
+    "firebase_url": "https://haunt-84c6f.firebaseio.com",
+    "project_id": "haunt-84c6f",
+    "storage_bucket": "haunt-84c6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482673168731:android:2cd6e0c5db39f26a",
+        "android_client_info": {
+          "package_name": "com.amy.haunt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482673168731-ffurqt9rhrddpcketqb9okm8tt6cdkjn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amy.haunt",
+            "certificate_hash": "2cc5dc44ea948cc8cec603622c26ca6ab4f2ab7b"
+          }
+        },
+        {
+          "client_id": "482673168731-17j7rvb6b4ahefr807ak88h5brkldmdi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUOZpetwrrC2fOmE6zNXc_vCsbGfRfcGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482673168731-17j7rvb6b4ahefr807ak88h5brkldmdi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Haunt</string>
+    <string name="logo">HAUNT</string>
+    <string name="email_hint">Enter email</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="login_text">log in</string>
+    <string name="or_text">OR</string>
+    <string name="create_text">Sign up</string>
+    <string name="next_text">next</string>
+    <string name="age_hint">Age</string>
+    <string name="gender_hint">Gender</string>
+    <string name="height_hint">Height</string>
+    <string name="birthday_hint">Birthday</string>
+    <string name="first_name_hint">First name</string>
+    <string name="last_name_hint">Last name</string>
+</resources>
