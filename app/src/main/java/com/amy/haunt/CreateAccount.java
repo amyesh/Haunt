@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import org.w3c.dom.Text;
 
@@ -108,38 +110,30 @@ public class CreateAccount extends AppCompatActivity {
                                 userObj.put("userEmail", email);
 
                                 // Save to Firestore
-                                collectionReference.add(userObj)
-                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                collectionReference.document(currentUserId)
+                                        .set(userObj)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
-                                            public void onSuccess(DocumentReference documentReference) {
-                                                documentReference.get()
-                                                   .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                       @Override
-                                                       public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                           if (Objects.requireNonNull(task.getResult()).exists()) {
-                                                               progressBar.setVisibility(View.INVISIBLE);
-
-                                                               HauntApi hauntApi = HauntApi.getInstance();
-                                                               hauntApi.setUserId(currentUserId);
-                                                               hauntApi.setUserEmail(email);
-                                                               Intent intent = new Intent(CreateAccount.this,
-                                                                       CreateUserProfileActivity.class);
-                                                               intent.putExtra("userId", currentUserId);
-                                                               startActivity(intent);
-                                                           }else {
-                                                               progressBar.setVisibility(View.INVISIBLE);
-                                                           }
-                                                       }
-                                                   });
+                                            public void onSuccess(Void aVoid) {
+                                                progressBar.setVisibility(View.INVISIBLE);
+                                                HauntApi hauntApi = HauntApi.getInstance();
+                                                hauntApi.setUserId(currentUserId);
+                                                hauntApi.setUserEmail(email);
+                                                Intent intent = new Intent(CreateAccount.this,
+                                                        CreateUserProfileActivity.class);
+                                                intent.putExtra("userId", currentUserId);
+                                                startActivity(intent);
+                                                finish();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
-
+                                                Log.d("CreateAccountActivity", "onFailure: " + e.getMessage());
                                             }
                                         });
                             }else {
+
                             }
                         }
                     })
@@ -154,13 +148,58 @@ public class CreateAccount extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
-
         currentUser = firebaseAuth.getCurrentUser();
         firebaseAuth.addAuthStateListener(authStateListener);
-
     }
 }
+
+
+
+//        collectionReference.document(currentUserId).set(userObj)
+//        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//          @Override
+//          public void onSuccess(DocumentReference documentReference) {
+//              documentReference.get()
+//                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                            if (Objects.requireNonNull(task.getResult()).exists()) {
+//                                progressBar.setVisibility(View.INVISIBLE);
+//
+//                                HauntApi hauntApi = HauntApi.getInstance();
+//                                hauntApi.setUserId(currentUserId);
+//                                hauntApi.setUserEmail(email);
+//                                Intent intent = new Intent(CreateAccount.this,
+//                                        CreateUserProfileActivity.class);
+//                                intent.putExtra("userId", currentUserId);
+//                                startActivity(intent);
+//                            }else {
+//                                progressBar.setVisibility(View.INVISIBLE);
+//                            }
+//                        }
+//                    });
+//        }
+//    })
+//            .addOnFailureListener(new OnFailureListener() {
+//        @Override
+//        public void onFailure(@NonNull Exception e) {
+//
+//        }
+//    });
+//}else {
+//        }
+//        }
+//        })
+//        .addOnFailureListener(new OnFailureListener() {
+//@Override
+//public void onFailure(@NonNull Exception e) {
+//
+//        }
+//        });
+//        }else {
+//
+//        }
+//        }

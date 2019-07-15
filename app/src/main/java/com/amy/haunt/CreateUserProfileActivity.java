@@ -207,7 +207,6 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
                                     userProfile.setBirthday(birthday);
                                     userProfile.setUserId(currentUserId);
 
-                                    //Todo: invoke our collectionReference
                                     collectionReference.document(currentUserId)
                                             .set(userProfile, SetOptions.merge())
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -224,7 +223,6 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
                                                     Log.d("CreateProfileActivity", "onFailure: " + e.getMessage());
                                                 }
                                             });
-                                    //Todo: save a User instance
                                 }
                             });
                         }
