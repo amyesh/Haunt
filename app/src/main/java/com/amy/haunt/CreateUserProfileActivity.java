@@ -63,7 +63,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
 //    private ImageView imageView;
     private ProgressBar progressBar;
     private Uri imageUri;
-    private EditText birthdayTextView; //change back to TextView if doing spinner
+    private EditText birthdayEditText; //change back to TextView if doing spinner
 
     private DatePickerDialog.OnDateSetListener onSetListener;
 
@@ -79,7 +79,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
         lastNameEditText = findViewById(R.id.last_name_profile);
         heightEditText = findViewById(R.id.height_profile);
         genderEditText = findViewById(R.id.gender_profile);
-        birthdayTextView = findViewById(R.id.birthday_profile);
+        birthdayEditText = findViewById(R.id.birthday_profile);
         progressBar = findViewById(R.id.create_user_profile_progress);
 //        imageView = findViewById(R.id.add_image_view);
 
@@ -99,7 +99,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
 
                 if (currentUser != null) {
 
-                }else {
+                } else {
 
                 }
             }
@@ -108,6 +108,12 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
 
 //    public static class DatePickerFragment extends DialogFragment
 //            implements DatePickerDialog.OnDateSetListener {
+//
+//        private final TextView birthday;
+//
+//        public DatePickerFragment(TextView birthday) {
+//            this.birthday = birthday;
+//        }
 //
 //        @Override
 //        public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -122,14 +128,16 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
 //        }
 //
 //        public void onDateSet(DatePicker view, int year, int month, int day) {
+//            Log.d("DateSet", "onDateSet: is firing");
 //            // Do something with the date chosen by the user
 //            month = month + 1;
 //            String date = month+"/"+day+"/"+year;
+//            birthday.setText(date);
 //        }
 //    }
-//
+
 //    public void showDatePickerDialog(View v) {
-//        DialogFragment newFragment = new DatePickerFragment();
+//        DialogFragment newFragment = new DatePickerFragment(b);
 //        newFragment.show(getSupportFragmentManager(), "datePicker");
 //    }
 
@@ -168,7 +176,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
         final String lastName = lastNameEditText.getText().toString().trim();
         final String height = heightEditText.getText().toString().trim();
         final String gender = genderEditText.getText().toString().trim();
-        final String birthday = birthdayTextView.getText().toString().trim();
+        final String birthday = birthdayEditText.getText().toString().trim();
 
         progressBar.setVisibility(View.VISIBLE);
 
