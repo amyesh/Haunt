@@ -40,6 +40,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -183,6 +184,8 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
         final String height = heightEditText.getText().toString().trim();
         final String gender = genderEditText.getText().toString().trim();
         final String birthday = birthdayEditText.getText().toString().trim();
+        final ArrayList<String> likes = new ArrayList<>();
+        final ArrayList<String> matches = new ArrayList<>();
 
         progressBar.setVisibility(View.VISIBLE);
 
@@ -212,6 +215,8 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
                                     userProfile.setProfilePhotoUrl(imageUri);
                                     userProfile.setBirthday(birthday);
                                     userProfile.setUserId(currentUserId);
+                                    userProfile.setLikes(likes);
+                                    userProfile.setMatches(matches);
 
                                     collectionReference.document(currentUserId)
                                             .set(userProfile, SetOptions.merge())

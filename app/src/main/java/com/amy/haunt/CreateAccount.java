@@ -1,6 +1,7 @@
 package com.amy.haunt;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -52,6 +53,9 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         Objects.requireNonNull(getSupportActionBar()).setElevation(0);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("");
 
         firebaseAuth = FirebaseAuth.getInstance();
 

@@ -26,6 +26,6 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="433dp"
-        android:layout_height="271dp"
-        app:srcCompat="@drawable/haunt_logo_small" />
+        android:layout_height="189dp"
+        app:srcCompat="@drawable/haunt_logo" />
 </LinearLayout>

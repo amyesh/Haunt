@@ -47,7 +47,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
         Picasso.get()
                 .load(imageUrl)
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.image_loading_bg)
                 .fit()
                 .into(viewHolder.image);
 

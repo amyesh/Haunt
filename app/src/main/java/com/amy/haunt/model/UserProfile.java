@@ -3,6 +3,8 @@ package com.amy.haunt.model;
 
 import com.google.firebase.firestore.auth.User;
 
+import java.util.ArrayList;
+
 
 public class UserProfile {
     private String firstName;
@@ -12,11 +14,13 @@ public class UserProfile {
     private String gender;
     private String profilePhotoUrl;
     private String birthday;
+    private ArrayList<String> likes;
+    private ArrayList<String> matches;
 
     public UserProfile() {
     }
 
-    public UserProfile(String firstName, String lastName, String userId, String height, String gender, String profilePhotoUrl, String birthday) {
+    public UserProfile(String firstName, String lastName, String userId, String height, String gender, String profilePhotoUrl, String birthday, ArrayList<String> likes, ArrayList<String> matches) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userId = userId;
@@ -24,6 +28,24 @@ public class UserProfile {
         this.gender = gender;
         this.profilePhotoUrl = profilePhotoUrl;
         this.birthday = birthday;
+        this.likes = likes;
+        this.matches = matches;
+    }
+
+    public ArrayList<String> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(ArrayList<String> likes) {
+        this.likes = likes;
+    }
+
+    public ArrayList<String> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(ArrayList<String> matches) {
+        this.matches = matches;
     }
 
     public String getFirstName() {
