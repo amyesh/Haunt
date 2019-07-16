@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.amy.haunt.R;
 import com.amy.haunt.model.UserProfile;
 import com.amy.haunt.util.HauntApi;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,11 +25,14 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
     private Context context;
     private List<UserProfile> userProfileList;
+    private String currentUserId;
 
     public UserRecyclerAdapter(Context context, List<UserProfile> userProfileList) {
         this.context = context;
         this.userProfileList = userProfileList;
     }
+
+
 
     @NonNull
     @Override
@@ -93,9 +98,14 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                 @Override
                 public void onClick(View view) {
 //                    context.startActivity();
+
+                    if (HauntApi.getInstance() != null) {
+                        currentUserId = HauntApi.getInstance().getUserId();
+                    }
+
                     int position = getLayoutPosition();
                     String likedUserId = userProfileList.get(position).getUserId();
-                    Log.d("likeButton", "onClick: " + likedUserId);
+                    Log.d("likeButton", "onClick: likedUserId " + likedUserId + " Current User ID: " + currentUserId);
 
                 }
             });

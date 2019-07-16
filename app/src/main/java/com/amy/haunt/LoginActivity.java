@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -116,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     HauntApi hauntApi = HauntApi.getInstance();
                                                     hauntApi.setUserEmail(snapshot.getString("userEmail"));
                                                     hauntApi.setUserId(snapshot.getString("userId"));
+                                                    Log.d("WTF", "onEvent: " + currentUserId);
 
                                                     //Go to ListActivity
                                                     startActivity(new Intent(LoginActivity.this,
