@@ -1,6 +1,7 @@
 package com.amy.haunt.ui;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amy.haunt.R;
 import com.amy.haunt.model.UserProfile;
+import com.amy.haunt.util.HauntApi;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,9 +43,12 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
         UserProfile userProfile = userProfileList.get(position);
         String imageUrl;
+//        String currentUserId;
 
         viewHolder.name.setText(userProfile.getFirstName());
         imageUrl = userProfile.getProfilePhotoUrl();
+//        currentUserId = userProfile.getUserId();
+
 
         Picasso.get()
                 .load(imageUrl)
@@ -69,7 +74,9 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 //                blurb,
                 compatibility;
         public ImageView image;
-        String currentUserId;
+        public ImageView likeButton;
+//        public ImageView dislikeButton;
+
 
         public ViewHolder(@NonNull View itemView, Context ctx) {
             super(itemView);
@@ -80,6 +87,20 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 //            blurb = itemView.findViewById(R.id.browse_users_blurb);
 //            compatibility = itemView.findViewById(R.id.browse_users_compat);
             image = itemView.findViewById(R.id.browse_users_image);
+            likeButton = itemView.findViewById(R.id.like_user);
+//            dislikeButton = itemView.findViewById(R.id.dislike_user);
+            likeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    context.startActivity();
+                    int position = getLayoutPosition();
+                    String likedUserId = userProfileList.get(position).getUserId();
+                    Log.d("likeButton", "onClick: " + likedUserId);
+
+                }
+            });
+
+
         }
     }
 }
