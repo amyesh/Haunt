@@ -17,4 +17,7 @@
     <string name="astro_signs">Cancer / Leo / Libra</string>
     <string name="users_compat">Compatibility: X</string>
     <string name="users_blurb">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna alquam erat volutpat.</string>
+    <string name="menu_browse">Browse</string>
+    <string name="menu_matches">View Matches</string>
+    <string name="menu_signout">Signout</string>
 </resources>

@@ -2,6 +2,7 @@ package com.amy.haunt;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -53,6 +54,9 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.login_progress);
 
         Objects.requireNonNull(getSupportActionBar()).setElevation(0);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("");
 
         firebaseAuth = FirebaseAuth.getInstance();
 

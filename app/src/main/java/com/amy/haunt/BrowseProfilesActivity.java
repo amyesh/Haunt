@@ -1,11 +1,15 @@
 package com.amy.haunt;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,6 +46,11 @@ public class BrowseProfilesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_profiles);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("");
+        actionBar.setLogo(R.drawable.haunt_logo_small);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -55,37 +64,42 @@ public class BrowseProfilesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        switch (item.getItemId()) {
-//            case R.id.action_add:
-//                //Take users to add Journal
-//                if (user != null && firebaseAuth != null) {
-//                    startActivity(new Intent(JournalListActivity.this,
-//                            PostJournalActivity.class));
-//                    //finish();
-//                }
-//                break;
-//            case R.id.action_signout:
-//                //sign user out!
-//                if (user != null && firebaseAuth != null) {
-//                    firebaseAuth.signOut();
-//
-//                    startActivity(new Intent(JournalListActivity.this,
-//                            MainActivity.class));
-//                    //finish();
-//                }
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_browse:
+                if (user != null && firebaseAuth != null) {
+                    startActivity(new Intent(BrowseProfilesActivity.this,
+                            BrowseProfilesActivity.class));
+                    //finish();
+                }
+                break;
+            case R.id.action_matches:
+                if (user != null && firebaseAuth != null) {
+                    startActivity(new Intent(BrowseProfilesActivity.this,
+                            ViewMatchesActivity.class));
+                    //finish();
+                }
+                break;
+            case R.id.action_signout:
+                if (user != null && firebaseAuth != null) {
+                    firebaseAuth.signOut();
+
+                    startActivity(new Intent(BrowseProfilesActivity.this,
+                            LoginActivity.class));
+                    //finish();
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
     @Override
@@ -105,7 +119,6 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                                 usersList.add(user);
                             }
 
-                            //Invoke recyclerview
                             userRecyclerAdapter = new UserRecyclerAdapter(BrowseProfilesActivity.this,
                                     usersList);
                             recyclerView.setAdapter(userRecyclerAdapter);
