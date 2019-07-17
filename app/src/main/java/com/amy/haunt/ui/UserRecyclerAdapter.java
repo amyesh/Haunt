@@ -9,16 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.amy.haunt.R;
 import com.amy.haunt.model.UserProfile;
 import com.amy.haunt.util.HauntApi;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapter.ViewHolder> {
@@ -26,6 +31,9 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     private Context context;
     private List<UserProfile> userProfileList;
     private String currentUserId;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference collectionReference = db.collection("Users");
 
     public UserRecyclerAdapter(Context context, List<UserProfile> userProfileList) {
         this.context = context;
@@ -75,9 +83,9 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
         public TextView
                 name,
-//                astro_sign,
+        //                astro_sign,
 //                blurb,
-                compatibility;
+        compatibility;
         public ImageView image;
         public ImageView likeButton;
 //        public ImageView dislikeButton;
@@ -107,10 +115,70 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                     String likedUserId = userProfileList.get(position).getUserId();
                     Log.d("likeButton", "onClick: likedUserId " + likedUserId + " Current User ID: " + currentUserId);
 
+                    saveUserLike(likedUserId);
                 }
             });
 
+        }
+
+        private void saveUserLike(final String likedUser) {
+            collectionReference.document(currentUserId)
+                .update("likes", FieldValue.arrayUnion(likedUser))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        checkUserMatch(likedUser, currentUserId);
+                        Log.d("AddLikeInRecyclerAdapter", "onSuccess: " + likedUser + " Current User: " + currentUserId);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("AddLikeInRecyclerAdapter", "onFailure: " + e.getMessage());
+                    }
+                });
+        }
+        private void checkUserMatch(String likedUser, final String currentUserId) {
+            collectionReference.document(likedUser).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot likedUserDocument = task.getResult();
+                        if (likedUserDocument.exists()) {
+                            Object likes = likedUserDocument.get("likes");
+
+                            for (likes : )
+//                            if (likes.equals(currentUserId) {
+//
+//                            }
+                            Log.d("checkMatch", "DocumentSnapshot data: " + likes + isLiked);
+                        } else {
+                            Log.d("checkMatch", "No such document");
+                        }
+                    } else {
+                        Log.d("checkMatch", "get failed with ", task.getException());
+                    }
+                }
+            });
 
         }
     }
 }
+
+//    DocumentReference docRef = db.collection("cities").document("SF");
+//docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//@Override
+//public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//        if (task.isSuccessful()) {
+//        DocumentSnapshot document = task.getResult();
+//        if (document.exists()) {
+//        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//        } else {
+//        Log.d(TAG, "No such document");
+//        }
+//        } else {
+//        Log.d(TAG, "get failed with ", task.getException());
+//        }
+//        }
+//        });
+

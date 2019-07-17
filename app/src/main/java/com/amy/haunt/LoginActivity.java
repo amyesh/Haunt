@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-
         emailAddres = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
@@ -81,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 loginEmailPasswordUser(emailAddres.getText().toString().trim(),
                         password.getText().toString().trim());
-
             }
         });
     }
@@ -117,25 +115,14 @@ public class LoginActivity extends AppCompatActivity {
                                                     HauntApi hauntApi = HauntApi.getInstance();
                                                     hauntApi.setUserEmail(snapshot.getString("userEmail"));
                                                     hauntApi.setUserId(snapshot.getString("userId"));
-                                                    Log.d("WTF", "onEvent: " + currentUserId);
 
                                                     //Go to ListActivity
                                                     startActivity(new Intent(LoginActivity.this,
                                                             BrowseProfilesActivity.class));
-
-
                                                 }
-
-
-
                                             }
-
                                         }
                                     });
-
-
-
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -145,9 +132,6 @@ public class LoginActivity extends AppCompatActivity {
 
                         }
                     });
-
-
-
         }else {
 
             progressBar.setVisibility(View.INVISIBLE);
