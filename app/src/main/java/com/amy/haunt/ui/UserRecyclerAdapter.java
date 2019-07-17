@@ -1,5 +1,4 @@
 package com.amy.haunt.ui;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.amy.haunt.R;
@@ -22,7 +20,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,11 +140,11 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
-                        DocumentSnapshot likedUserDocument = task.getResult();
-                        if (likedUserDocument.exists()) {
-                            Object likes = likedUserDocument.get("likes");
-
-                            Log.d("checkMatch", "DocumentSnapshot data: " + likes);
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        if (documentSnapshot.exists()) {
+                            ArrayList<String> likes = (ArrayList<String>) documentSnapshot.get("likes");
+                            boolean contains = likes.contains(currentUserId);
+                            Log.d("checkMatch", "DocumentSnapshot data: " + likes + contains);
                         } else {
                             Log.d("checkMatch", "No such document");
                         }
@@ -161,20 +158,13 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     }
 }
 
-//    DocumentReference docRef = db.collection("cities").document("SF");
-//docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//@Override
-//public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//        if (task.isSuccessful()) {
-//        DocumentSnapshot document = task.getResult();
-//        if (document.exists()) {
-//        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//        } else {
-//        Log.d(TAG, "No such document");
-//        }
-//        } else {
-//        Log.d(TAG, "get failed with ", task.getException());
-//        }
-//        }
-//        });
+//        //creating an intent
+//        Intent intent = new Intent(getApplicationContext(), ArtistActivity.class);
+//
+//        //putting artist name and id to intent
+//        intent.putExtra(ARTIST_ID, artist.getArtistId());
+//        intent.putExtra(ARTIST_NAME, artist.getArtistName());
+//
+//        //starting the activity with intent
+//        startActivity(intent);
 
