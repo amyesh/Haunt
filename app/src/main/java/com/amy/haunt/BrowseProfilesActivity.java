@@ -105,7 +105,8 @@ public class BrowseProfilesActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        noUsersToBrowse.setVisibility(View.INVISIBLE);
+        //Todo: add more robust filtering related to user preferences
         collectionReference.whereEqualTo("gender",
                 "Male")
                 .get()

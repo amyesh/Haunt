@@ -1,18 +1,16 @@
 package com.amy.haunt.ui;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.amy.haunt.model.UserProfile;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.List;
 
-public class MatchesRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapter.ViewHolder> {
+public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecyclerAdapter.ViewHolder> {
 
     private Context context;
     private List<UserProfile> matchProfileList;
@@ -28,17 +26,24 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAda
 
     @NonNull
     @Override
-    public UserRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MatchesRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return null;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserRecyclerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MatchesRecyclerAdapter.ViewHolder holder, int position) {
 
     }
 
     @Override
     public int getItemCount() {
         return 0;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+//            context = ctx;
+        }
     }
 }
