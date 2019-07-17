@@ -147,11 +147,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                         if (likedUserDocument.exists()) {
                             Object likes = likedUserDocument.get("likes");
 
-                            for (likes : )
-//                            if (likes.equals(currentUserId) {
-//
-//                            }
-                            Log.d("checkMatch", "DocumentSnapshot data: " + likes + isLiked);
+                            Log.d("checkMatch", "DocumentSnapshot data: " + likes);
                         } else {
                             Log.d("checkMatch", "No such document");
                         }
