@@ -24,4 +24,6 @@
     <string name="dislike_user_button_desc">dislike user button</string>
     <string name="like_user_button_desc">like user button</string>
     <string name="name_user_profile">Name</string>
+    <string name="no_matches">No matches yet! Keep browsing...</string>
+    <string name="match_name">Name</string>
 </resources>

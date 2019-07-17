@@ -37,8 +37,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         this.userProfileList = userProfileList;
     }
 
-
-
     @NonNull
     @Override
     public UserRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -115,7 +113,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                     saveUserLike(likedUserId);
                 }
             });
-
         }
 
         private void saveUserLike(final String likedUser) {
@@ -135,7 +132,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                     }
                 });
         }
-        private void checkUserMatch(String likedUser, final String currentUserId) {
+        private void checkUserMatch(final String likedUser, final String currentUserId) {
             collectionReference.document(likedUser).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -144,16 +141,48 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                         if (documentSnapshot.exists()) {
                             ArrayList<String> likes = (ArrayList<String>) documentSnapshot.get("likes");
                             boolean contains = likes.contains(currentUserId);
-                            Log.d("checkMatch", "DocumentSnapshot data: " + likes + contains);
+                            if (contains == true) {
+                                //Todo: create notification (Toast?) that user has matched!
+                                createMatch(likedUser, currentUserId);
+                            }
                         } else {
-                            Log.d("checkMatch", "No such document");
                         }
                     } else {
                         Log.d("checkMatch", "get failed with ", task.getException());
                     }
                 }
             });
+        }
 
+        private void createMatch(final String likedUser, final String currentUserId) {
+            collectionReference.document(currentUserId)
+                    .update("matches", FieldValue.arrayUnion(likedUser))
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("createMatch", "onSuccess: added " + likedUser);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("createMatch", "onFailure: " + e.getMessage());
+                        }
+                    });
+            collectionReference.document(likedUser)
+                    .update("matches", FieldValue.arrayUnion(currentUserId))
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("createMatch", "onSuccess: added " + currentUserId);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("createMatch", "onFailure: " + e.getMessage());
+                        }
+                    });
         }
     }
 }
