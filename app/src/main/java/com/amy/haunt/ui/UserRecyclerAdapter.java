@@ -51,12 +51,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
         UserProfile userProfile = userProfileList.get(position);
         String imageUrl;
-//        String currentUserId;
-
         viewHolder.name.setText(userProfile.getFirstName());
         imageUrl = userProfile.getProfilePhotoUrl();
-//        currentUserId = userProfile.getUserId();
-
 
         Picasso.get()
                 .load(imageUrl)
@@ -76,11 +72,11 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView
-                name,
-        //                astro_sign,
-//                blurb,
-        compatibility;
+        public TextView name;
+//        astro_sign,
+//        blurb,
+//        compatibility;
+
         public ImageView image;
         public ImageView likeButton;
 //        public ImageView dislikeButton;
@@ -186,14 +182,4 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         }
     }
 }
-
-//        //creating an intent
-//        Intent intent = new Intent(getApplicationContext(), ArtistActivity.class);
-//
-//        //putting artist name and id to intent
-//        intent.putExtra(ARTIST_ID, artist.getArtistId());
-//        intent.putExtra(ARTIST_NAME, artist.getArtistName());
-//
-//        //starting the activity with intent
-//        startActivity(intent);
 
