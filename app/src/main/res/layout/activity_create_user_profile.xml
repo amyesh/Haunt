@@ -58,32 +58,24 @@
             android:inputType="textNoSuggestions"
             android:maxLines="1" />
 
-        <EditText
-            android:id="@+id/birthday_profile"
+        <Button
+            android:id="@+id/birthday_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:hint="@string/birthday_hint"
-            android:maxLines="1" />
+            android:text="@string/birthday"
+            android:background="@drawable/blue_border_button"
+            android:textColor="@color/mid_blue"
+            android:textStyle="bold"
+            />
 
-        <!--<TextView-->
-            <!--android:id="@+id/birthday_profile"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="4dp"-->
-            <!--android:layout_marginTop="28dp"-->
-            <!--android:layout_marginBottom="16dp"-->
-            <!--android:hint="@string/birthday_hint"-->
-            <!--android:textSize="18sp"-->
-            <!--android:onClick="showDatePickerDialog"-->
-            <!--android:maxLines="1" />-->
-        <!--<DatePicker-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:spinnersShown="true"-->
-            <!--android:calendarViewShown="false">-->
-        <!--</DatePicker>-->
+        <TextView
+            android:id="@+id/birthday_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="24sp"
+            />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

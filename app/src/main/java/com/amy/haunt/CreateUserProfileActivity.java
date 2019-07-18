@@ -4,26 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.amy.haunt.model.UserProfile;
 import com.amy.haunt.util.HauntApi;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,17 +25,15 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Objects;
 
-public class CreateUserProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class CreateUserProfileActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
 
     private static final int PROFILE_PHOTO_CODE = 1;
     private Button saveInfoButton;
@@ -59,10 +51,11 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
     private EditText heightEditText;
     private EditText genderEditText;
     private ImageView addPhotoButton;
+    private TextView birthdayTextView;
 //    private ImageView imageView;
     private ProgressBar progressBar;
     private Uri imageUri;
-    private EditText birthdayEditText; //change back to TextView if doing spinner
+//    private EditText birthdayEditText; //change back to TextView if doing spinner
 
     private DatePickerDialog.OnDateSetListener onSetListener;
 
@@ -83,7 +76,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
         lastNameEditText = findViewById(R.id.last_name_profile);
         heightEditText = findViewById(R.id.height_profile);
         genderEditText = findViewById(R.id.gender_profile);
-        birthdayEditText = findViewById(R.id.birthday_profile);
+        birthdayTextView = findViewById(R.id.birthday_text);
         progressBar = findViewById(R.id.create_user_profile_progress);
 //        imageView = findViewById(R.id.add_image_view);
 
@@ -108,42 +101,25 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
                 }
             }
         };
+
+        findViewById(R.id.birthday_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
     }
 
-//    public static class DatePickerFragment extends DialogFragment
-//            implements DatePickerDialog.OnDateSetListener {
-//
-//        private final TextView birthday;
-//
-//        public DatePickerFragment(TextView birthday) {
-//            this.birthday = birthday;
-//        }
-//
-//        @Override
-//        public Dialog onCreateDialog(Bundle savedInstanceState) {
-//            // Use the current date as the default date in the picker
-//            final Calendar c = Calendar.getInstance();
-//            int year = c.get(Calendar.YEAR);
-//            int month = c.get(Calendar.MONTH);
-//            int day = c.get(Calendar.DAY_OF_MONTH);
-//
-//            // Create a new instance of DatePickerDialog and return it
-//            return new DatePickerDialog(getActivity(), this, year, month, day);
-//        }
-//
-//        public void onDateSet(DatePicker view, int year, int month, int day) {
-//            Log.d("DateSet", "onDateSet: is firing");
-//            // Do something with the date chosen by the user
-//            month = month + 1;
-//            String date = month+"/"+day+"/"+year;
-//            birthday.setText(date);
-//        }
-//    }
-
-//    public void showDatePickerDialog(View v) {
-//        DialogFragment newFragment = new DatePickerFragment(b);
-//        newFragment.show(getSupportFragmentManager(), "datePicker");
-//    }
+    private void showDatePickerDialog(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
 
     @Override
     protected void onStart() {
@@ -180,7 +156,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
         final String lastName = lastNameEditText.getText().toString().trim();
         final String height = heightEditText.getText().toString().trim();
         final String gender = genderEditText.getText().toString().trim();
-        final String birthday = birthdayEditText.getText().toString().trim();
+        final String birthday = birthdayTextView.getText().toString().trim();
         final ArrayList<String> likes = new ArrayList<>();
         final ArrayList<String> matches = new ArrayList<>();
 
@@ -256,5 +232,11 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
 //                imageView.setImageURI(imageUri);//show image
             }
         }
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        String date = month + "/" + dayOfMonth + "/" + year;
+        birthdayTextView.setText(date);
     }
 }

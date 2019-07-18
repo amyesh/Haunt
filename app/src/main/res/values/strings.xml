@@ -26,4 +26,5 @@
     <string name="name_user_profile">Name</string>
     <string name="no_matches">No matches yet! Keep browsing...</string>
     <string name="match_name">Name</string>
+    <string name="birthday">select birthday</string>
 </resources>

@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             assert user != null;
                             final String currentUserId = user.getUid();
+//                            Log.d("login", "onComplete: " + currentUserId);
 
                             collectionReference
                                     .whereEqualTo("userId", currentUserId)
@@ -129,7 +130,6 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressBar.setVisibility(View.INVISIBLE);
-
                         }
                     });
         }else {
