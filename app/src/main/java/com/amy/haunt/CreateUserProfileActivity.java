@@ -55,6 +55,8 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
 //    private ImageView imageView;
     private ProgressBar progressBar;
     private Uri imageUri;
+    private String age;
+    private String zodiac;
 //    private EditText birthdayEditText; //change back to TextView if doing spinner
 
     private DatePickerDialog.OnDateSetListener onSetListener;
@@ -121,6 +123,116 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
         datePickerDialog.show();
     }
 
+    private String getAge(int year, int month, int day){
+        java.util.Calendar birthdate = java.util.Calendar.getInstance();
+        java.util.Calendar today = java.util.Calendar.getInstance();
+
+        birthdate.set(year, month, day);
+
+        int age = today.get(java.util.Calendar.YEAR) - birthdate.get(java.util.Calendar.YEAR);
+
+        if (today.get(java.util.Calendar.DAY_OF_YEAR) < birthdate.get(java.util.Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+
+        Integer ageInt = new Integer(age);
+        String ageString = ageInt.toString();
+
+        return ageString;
+    }
+
+    private String getZodiac(int year, int month, int day){
+        String sign = new String();
+
+        switch (month) {
+            case 1:
+                if (day <= 19) {
+                    sign = "Capricorn";
+                } else {
+                    sign = "Aquarius";
+                }
+                break;
+            case 2:
+                if (day <= 18) {
+                    sign = "Aquarius";
+                } else {
+                    sign = "Pisces";
+                }
+                break;
+            case 3:
+                if (day <= 19) {
+                    sign = "Pisces";
+                } else {
+                    sign = "Aries";
+                }
+                break;
+            case 4:
+                if (day <= 19) {
+                    sign = "Aries";
+                } else {
+                    sign = "Taurus";
+                }
+                break;
+            case 5:
+                if (day <= 20) {
+                    sign = "Taurus";
+                } else {
+                    sign = "Gemini";
+                }
+                break;
+            case 6:
+                if (day <= 20) {
+                    sign = "Gemini";
+                } else {
+                    sign = "Cancer";
+                }
+                break;
+            case 7:
+                if (day <= 22) {
+                    sign = "Cancer";
+                } else {
+                    sign = "Leo";
+                }
+                break;
+            case 8:
+                if (day <= 22) {
+                    sign = "Leo";
+                } else {
+                    sign = "Virgo";
+                }
+                break;
+            case 9:
+                if (day <= 22) {
+                    sign = "Virgo";
+                } else {
+                    sign = "Libra";
+                }
+                break;
+            case 10:
+                if (day <= 21) {
+                    sign = "Libra";
+                } else {
+                    sign = "Scorpio";
+                }
+                break;
+            case 11:
+                if (day <= 21) {
+                    sign = "Scorpio";
+                } else {
+                    sign = "Sagittarius";
+                }
+                break;
+            case 12:
+                if (day <= 21) {
+                    sign = "Sagittarius";
+                } else {
+                    sign = "Capricorn";
+                }
+                break;
+        }
+        return sign;
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -140,7 +252,6 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.create_user_profile_button:
-                //save user info
                 saveUserInfo();
                 break;
             case R.id.add_image_button:
@@ -190,6 +301,8 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
                                     userProfile.setUserId(currentUserId);
                                     userProfile.setLikes(likes);
                                     userProfile.setMatches(matches);
+                                    userProfile.setZodiac(zodiac);
+                                    userProfile.setAge(age);
 
                                     collectionReference.document(currentUserId)
                                             .set(userProfile, SetOptions.merge())
@@ -236,7 +349,10 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        String date = month + "/" + dayOfMonth + "/" + year;
+        int monthActual = month + 1;
+        String date = monthActual + "/" + dayOfMonth + "/" + year;
         birthdayTextView.setText(date);
+        age = getAge(year, monthActual, dayOfMonth);
+        zodiac = getZodiac(year, monthActual, dayOfMonth);
     }
 }

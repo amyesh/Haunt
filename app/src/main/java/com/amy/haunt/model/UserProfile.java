@@ -16,11 +16,17 @@ public class UserProfile {
     private String birthday;
     private ArrayList<String> likes;
     private ArrayList<String> matches;
+    private String age;
+    private String zodiac;
 
     public UserProfile() {
     }
 
-    public UserProfile(String firstName, String lastName, String userId, String height, String gender, String profilePhotoUrl, String birthday, ArrayList<String> likes, ArrayList<String> matches) {
+    public UserProfile(String firstName, String lastName,
+                       String userId, String height,
+                       String gender, String profilePhotoUrl,
+                       String birthday, ArrayList<String> likes,
+                       ArrayList<String> matches, String age, String zodiac) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userId = userId;
@@ -30,10 +36,28 @@ public class UserProfile {
         this.birthday = birthday;
         this.likes = likes;
         this.matches = matches;
+        this.age = age;
+        this.zodiac = zodiac;
     }
 
     public ArrayList<String> getLikes() {
         return likes;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getZodiac() {
+        return zodiac;
+    }
+
+    public void setZodiac(String zodiac) {
+        this.zodiac = zodiac;
     }
 
     public void setLikes(ArrayList<String> likes) {
