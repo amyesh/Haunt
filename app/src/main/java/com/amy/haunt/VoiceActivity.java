@@ -63,7 +63,7 @@ public class VoiceActivity extends AppCompatActivity {
      *
      * For example : https://myurl.io/accessToken.php
      */
-    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://ea27c2d1.ngrok.io/accessToken";
+    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://3108f650.ngrok.io/accessToken";
 
     private static final int MIC_PERMISSION_REQUEST_CODE = 1;
     private static final int SNACKBAR_DURATION = 4000;
@@ -229,15 +229,15 @@ public class VoiceActivity extends AppCompatActivity {
                 activeCall = call;
             }
 
-//            @Override
-//            public void onReconnecting(@NonNull Call call, @NonNull CallException callException) {
-//                Log.d(TAG, "onReconnecting");
-//            }
-//
-//            @Override
-//            public void onReconnected(@NonNull Call call) {
-//                Log.d(TAG, "onReconnected");
-//            }
+            @Override
+            public void onReconnecting(@NonNull Call call, @NonNull CallException callException) {
+                Log.d(TAG, "onReconnecting");
+            }
+
+            @Override
+            public void onReconnected(@NonNull Call call) {
+                Log.d(TAG, "onReconnected");
+            }
 
             @SuppressLint("WrongConstant")
             @Override
