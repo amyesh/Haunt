@@ -10,14 +10,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amy.haunt.R;
+import com.amy.haunt.VoiceActivity;
 import com.amy.haunt.model.UserProfile;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -71,7 +70,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
         public CardView viewProfileButton;
         public ImageView callButton;
 
-        public ViewHolder(@NonNull View itemView, Context ctx) {
+        public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context = ctx;
 
@@ -103,6 +102,9 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
                 @Override
                 public void onClick(View view) {
                     //Todo: Add functionality to call user
+                    Intent makeCall = new Intent(ctx, VoiceActivity.class);
+
+                    ctx.startActivity(makeCall);
 //                    int position = getLayoutPosition();
 //
 //                    //creating an intent

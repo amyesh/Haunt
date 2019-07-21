@@ -4,6 +4,7 @@
     package="com.amy.haunt">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:name=".util.HauntApi"
@@ -14,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AddUserPreferencesActivity"/>
+        <activity android:name=".VoiceActivity"></activity>
+        <activity android:name=".AddUserPreferencesActivity" />
         <activity android:name=".ViewMatchesActivity" />
         <activity android:name=".BrowseProfilesActivity" />
         <activity android:name=".CreateUserProfileActivity" />
@@ -27,6 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- [START fcm_listener] -->
+        <service
+            android:name=".fcm.VoiceFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- [END fcm_listener] -->
     </application>
-
 </manifest>

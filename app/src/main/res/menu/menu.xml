@@ -12,6 +12,10 @@
     <item android:id="@+id/action_signout"
         android:title="@string/menu_signout"
         app:showAsAction="never" />
+    <item android:id="@+id/speaker_menu_item"
+        android:title="@string/turn_speaker_on"
+        android:icon="@drawable/ic_volume_up_white_24dp"
+        app:showAsAction="ifRoom"/>
 
 </menu>
 
