@@ -54,7 +54,8 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.image_loading_bg)
-                .fit()
+                .resize(1000,1000)
+                .centerInside()
                 .into(viewHolder.image);
     }
 

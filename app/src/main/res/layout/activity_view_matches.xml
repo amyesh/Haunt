@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="monospace"
         android:text="@string/no_matches"
         app:layout_constraintBottom_toBottomOf="@+id/matchRecyclerView"
         app:layout_constraintEnd_toEndOf="@+id/matchRecyclerView"
