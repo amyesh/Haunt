@@ -1,20 +1,19 @@
 package com.amy.haunt;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.amy.haunt.util.HauntApi;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -130,7 +129,11 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressBar.setVisibility(View.INVISIBLE);
-                        }
+                            Toast.makeText(LoginActivity.this,
+                                        "We don't have a record of that username and/or password",
+                                        Toast.LENGTH_LONG)
+                                        .show();
+                            }
                     });
         }else {
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
+    android:gravity="start"
     android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="16dp"
@@ -15,7 +15,8 @@
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"/>
 
     <LinearLayout
         android:id="@+id/create_user_profile"
@@ -87,25 +88,40 @@
             android:textStyle="bold"
             />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_image_linear"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/add_image_view"
+                android:layout_width="387dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:alpha=".3"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/add_image_button"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/add_image_button"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/add_image_button"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:layout_gravity="center_vertical"
-                app:srcCompat="@android:drawable/ic_menu_camera"/>
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/add_image_view"
+                app:layout_constraintTop_toTopOf="@+id/add_image_view"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
 
-
-            <ImageView
-                android:id="@+id/add_image_view"
-                android:layout_width="match_parent"
-                android:layout_height="200dp" />
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/create_user_profile_button"
