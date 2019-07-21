@@ -26,6 +26,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="monospace"
         android:text="@string/no_matches"
+        android:fontFamily="monospace"
         app:layout_constraintBottom_toBottomOf="@+id/matchRecyclerView"
         app:layout_constraintEnd_toEndOf="@+id/matchRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/matchRecyclerView"

@@ -1,4 +1,5 @@
 package com.amy.haunt.ui;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -6,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.amy.haunt.R;
 import com.amy.haunt.model.UserProfile;
 import com.amy.haunt.util.HauntApi;
@@ -20,14 +23,18 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapter.ViewHolder> {
 
     private Context context;
     private List<UserProfile> userProfileList;
     private String currentUserId;
+    private String userHeading;
+    private String zodiac_signs;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("Users");
@@ -50,8 +57,11 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     public void onBindViewHolder(@NonNull UserRecyclerAdapter.ViewHolder viewHolder, int position) {
 
         UserProfile userProfile = userProfileList.get(position);
+        userHeading = userProfile.getFirstName() + ", " + userProfile.getAge();
+        zodiac_signs = userProfile.getZodiac() + " / " + randomSignFromArray() + " / " + randomSignFromArray();
         String imageUrl;
-        viewHolder.name.setText(userProfile.getFirstName());
+        viewHolder.name.setText(userHeading);
+        viewHolder.astro_sign.setText(zodiac_signs);
         imageUrl = userProfile.getProfilePhotoUrl();
 
         Picasso.get()
@@ -63,7 +73,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
 //        viewHolder.blurb.setText(userProfile.getLastName());
 //        viewHolder.compatibility.setText(userProfile.getBirthday());
-//        viewHolder.astro_sign.setText(userProfile.getBirthday());
     }
 
     @Override
@@ -73,8 +82,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView name;
-//        astro_sign,
+        public TextView name,
+        astro_sign;
 //        blurb,
 //        compatibility;
 
@@ -88,11 +97,11 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             context = ctx;
 
             name = itemView.findViewById(R.id.browse_users_name);
-//            astro_sign = itemView.findViewById(R.id.browse_users_sign);
-//            blurb = itemView.findViewById(R.id.browse_users_blurb);
-//            compatibility = itemView.findViewById(R.id.browse_users_compat);
+            astro_sign = itemView.findViewById(R.id.browse_users_sign);
             image = itemView.findViewById(R.id.browse_users_image);
             likeButton = itemView.findViewById(R.id.like_user);
+//            blurb = itemView.findViewById(R.id.browse_users_blurb);
+//            compatibility = itemView.findViewById(R.id.browse_users_compat);
 //            dislikeButton = itemView.findViewById(R.id.dislike_user);
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -182,5 +191,14 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                     });
         }
     }
+
+    public String randomSignFromArray()
+        {
+            String[] arr={"Capricorn", "Aquarius", "Virgo", "Taurus", "Sagittarius", "Cancer", "Leo", "Libra", "Aries", "Scorpio", "Gemini", "Pisces"};
+            Random r = new Random();
+            int randomNumber=r.nextInt(arr.length);
+
+            return arr[randomNumber];
+        }
 }
 

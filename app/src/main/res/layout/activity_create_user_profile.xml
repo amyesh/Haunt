@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
+    android:gravity="start"
     android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="16dp"
@@ -15,7 +15,8 @@
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"/>
 
     <LinearLayout
         android:id="@+id/create_user_profile"
@@ -29,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/first_name_hint"
+            android:fontFamily="monospace"
             android:inputType="textPersonName"
             android:maxLines="1" />
 
@@ -37,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
             android:hint="@string/last_name_hint"
             android:inputType="textPersonName"
             android:maxLines="1" />
@@ -46,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
             android:hint="@string/gender_hint"
             android:maxLines="1" />
 
@@ -54,52 +58,77 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
             android:hint="@string/height_hint"
             android:inputType="textNoSuggestions"
             android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/birthday_text"
+            android:fontFamily="monospace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1/2/2001"
+            android:textColor="#A5A5A5"
+            android:textSize="19sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="3dp"
+            />
 
         <Button
             android:id="@+id/birthday_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/birthday"
+            android:fontFamily="monospace"
             android:background="@drawable/blue_border_button"
             android:textColor="@color/mid_blue"
+            android:layout_marginBottom="16dp"
             android:textStyle="bold"
             />
 
-        <TextView
-            android:id="@+id/birthday_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_image_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textSize="24sp"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/add_image_view"
+                android:layout_width="387dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:alpha=".3"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/add_image_button"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/add_image_button"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/add_image_button"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                app:srcCompat="@android:drawable/ic_menu_camera"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/add_image_view"
+                app:layout_constraintTop_toTopOf="@+id/add_image_view"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
 
-
-            <!--<ImageView-->
-                <!--android:id="@+id/add_image_view"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="75dp" />-->
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/create_user_profile_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
             android:text="@string/next_text"
             android:background="@drawable/basic_button"
             android:textColor="@android:color/white"

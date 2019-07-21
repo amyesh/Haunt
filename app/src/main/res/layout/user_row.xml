@@ -27,8 +27,8 @@
             <ImageView
                 android:id="@+id/browse_users_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:maxHeight="450dp"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/user_profile_picture_desc"
                 android:src="@android:color/transparent"
                 android:scaleType="centerCrop"
@@ -96,7 +96,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
             android:gravity="center_horizontal"
-
             android:padding="25dp"
             android:text="@string/users_blurb"
             android:textSize="18sp"

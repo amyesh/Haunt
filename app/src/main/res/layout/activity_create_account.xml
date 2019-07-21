@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:background="@drawable/button_brdr"
+            android:background="@drawable/button_brdr_selector"
             android:fontFamily="monospace"
             android:text="@string/create_text"
             android:textColor="@android:color/white"

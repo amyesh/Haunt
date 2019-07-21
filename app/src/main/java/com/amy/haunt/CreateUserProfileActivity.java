@@ -1,9 +1,5 @@
 package com.amy.haunt;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -18,6 +14,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.amy.haunt.model.UserProfile;
 import com.amy.haunt.util.HauntApi;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,6 +32,7 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -52,12 +55,11 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
     private EditText genderEditText;
     private ImageView addPhotoButton;
     private TextView birthdayTextView;
-//    private ImageView imageView;
+    private ImageView imageView;
     private ProgressBar progressBar;
     private Uri imageUri;
     private String age;
     private String zodiac;
-//    private EditText birthdayEditText; //change back to TextView if doing spinner
 
     private DatePickerDialog.OnDateSetListener onSetListener;
 
@@ -80,7 +82,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
         genderEditText = findViewById(R.id.gender_profile);
         birthdayTextView = findViewById(R.id.birthday_text);
         progressBar = findViewById(R.id.create_user_profile_progress);
-//        imageView = findViewById(R.id.add_image_view);
+        imageView = findViewById(R.id.add_image_view);
 
         saveInfoButton = findViewById(R.id.create_user_profile_button);
         saveInfoButton.setOnClickListener(this);
@@ -342,7 +344,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
         if (requestCode == PROFILE_PHOTO_CODE && resultCode == RESULT_OK) {
             if (data != null) {
                 imageUri = data.getData();
-//                imageView.setImageURI(imageUri);//show image
+                imageView.setImageURI(imageUri);
             }
         }
     }
