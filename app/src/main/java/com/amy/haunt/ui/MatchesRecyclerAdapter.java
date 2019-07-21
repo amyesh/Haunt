@@ -1,7 +1,6 @@
 package com.amy.haunt.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +9,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amy.haunt.R;
 import com.amy.haunt.model.UserProfile;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -55,8 +52,8 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.image_loading_bg)
-                .fit()
-                .into(viewHolder.image);
+                .resize(1000,1000)
+                .centerInside()                .into(viewHolder.image);
     }
 
     @Override

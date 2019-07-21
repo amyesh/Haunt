@@ -57,7 +57,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.image_loading_bg)
-                .fit()
+                .resize(600,1000)
+                .centerInside()
                 .into(viewHolder.image);
 
 //        viewHolder.blurb.setText(userProfile.getLastName());

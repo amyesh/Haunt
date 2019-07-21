@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/first_name_hint"
+            android:fontFamily="monospace"
             android:inputType="textPersonName"
             android:maxLines="1" />
 
@@ -37,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
             android:hint="@string/last_name_hint"
             android:inputType="textPersonName"
             android:maxLines="1" />
@@ -46,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
             android:hint="@string/gender_hint"
             android:maxLines="1" />
 
@@ -54,26 +57,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
             android:hint="@string/height_hint"
             android:inputType="textNoSuggestions"
             android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/birthday_text"
+            android:fontFamily="monospace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1/2/2001"
+            android:textColor="#A5A5A5"
+            android:textSize="19sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="3dp"
+            />
 
         <Button
             android:id="@+id/birthday_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/birthday"
+            android:fontFamily="monospace"
             android:background="@drawable/blue_border_button"
             android:textColor="@color/mid_blue"
+            android:layout_marginBottom="16dp"
             android:textStyle="bold"
-            />
-
-        <TextView
-            android:id="@+id/birthday_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textSize="24sp"
             />
 
         <LinearLayout
@@ -85,13 +96,14 @@
                 android:id="@+id/add_image_button"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
+                android:layout_gravity="center_vertical"
                 app:srcCompat="@android:drawable/ic_menu_camera"/>
 
 
-            <!--<ImageView-->
-                <!--android:id="@+id/add_image_view"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="75dp" />-->
+            <ImageView
+                android:id="@+id/add_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
         </LinearLayout>
 
@@ -100,6 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
             android:text="@string/next_text"
             android:background="@drawable/basic_button"
             android:textColor="@android:color/white"
