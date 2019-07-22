@@ -66,4 +66,7 @@
     <string name="women">Women</string>
     <string name="men">Men</string>
     <string name="intersted">Who do you want to date?</string>
+    <string name="do_you_drink">Do you drink?</string>
+    <string name="do_you_smoke">Do you smoke?</string>
+    <string name="do_you_do_drugs">Do you do drugs?</string>
 </resources>

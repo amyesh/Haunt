@@ -35,7 +35,8 @@
         </activity>
         <!-- [START fcm_listener] -->
         <service
-            android:name=".fcm.VoiceFirebaseMessagingService">
+            android:name=".fcm.VoiceFirebaseMessagingService"
+            android:permission="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

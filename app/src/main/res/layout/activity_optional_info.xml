@@ -37,16 +37,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="30dp"
-            android:layout_marginLeft="20dp">
+            android:layout_marginStart="20dp">
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton android:id="@+id/kids_yes"
                     android:layout_width="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
                     android:textStyle="italic"
@@ -57,12 +57,13 @@
                 <RadioButton android:id="@+id/kids_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:text="@string/no"
                     android:textStyle="italic"
                     android:fontFamily="monospace"
                     android:textSize="16sp"
-                    android:textColor="#797979"                    android:onClick="onRadioKidsButtonClicked"/>
+                    android:textColor="#797979"
+                    android:onClick="onRadioKidsButtonClicked"/>
                 <RadioButton android:id="@+id/kids_prefer_not"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,7 +71,8 @@
                     android:textStyle="italic"
                     android:fontFamily="monospace"
                     android:textSize="16sp"
-                    android:textColor="#797979"                    android:onClick="onRadioKidsButtonClicked"/>
+                    android:textColor="#797979"
+                    android:onClick="onRadioKidsButtonClicked"/>
             </RadioGroup>
         </RelativeLayout>
 
@@ -81,22 +83,22 @@
             android:layout_marginTop="16dp"
             android:fontFamily="monospace"
             android:textSize="17sp"
-            android:text="Do you drink?" />
+            android:text="@string/do_you_drink" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="30dp"
-            android:layout_marginLeft="20dp">
+            android:layout_marginStart="20dp">
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton android:id="@+id/radio_yes"
                     android:layout_width="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
                     android:textStyle="italic"
@@ -111,7 +113,7 @@
                     android:fontFamily="monospace"
                     android:textSize="16sp"
                     android:textColor="#797979"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:text="@string/no"
                     android:onClick="onRadioDrinkButtonClicked"/>
                 <RadioButton android:id="@+id/radio_prefer_not"
@@ -133,22 +135,22 @@
             android:layout_marginTop="16dp"
             android:fontFamily="monospace"
             android:textSize="17sp"
-            android:text="Do you smoke?" />
+            android:text="@string/do_you_smoke" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="30dp"
-            android:layout_marginLeft="20dp">
+            android:layout_marginStart="20dp">
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton android:id="@+id/smoke_yes"
                     android:layout_width="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
                     android:textStyle="italic"
@@ -163,7 +165,7 @@
                     android:fontFamily="monospace"
                     android:textSize="16sp"
                     android:textColor="#797979"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:text="@string/no"
                     android:onClick="onRadioSmokeButtonClicked"/>
                 <RadioButton android:id="@+id/smoke_prefer_not"
@@ -185,22 +187,22 @@
             android:layout_marginTop="16dp"
             android:fontFamily="monospace"
             android:textSize="17sp"
-            android:text="Do you do drugs?" />
+            android:text="@string/do_you_do_drugs" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="30dp"
-            android:layout_marginLeft="20dp">
+            android:layout_marginStart="20dp">
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton android:id="@+id/drugs_yes"
                     android:layout_width="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
                     android:textStyle="italic"
@@ -215,7 +217,7 @@
                     android:fontFamily="monospace"
                     android:textSize="16sp"
                     android:textColor="#797979"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:text="@string/no"
                     android:onClick="onRadioDrugsButtonClicked"/>
                 <RadioButton android:id="@+id/drugs_prefer_not"
