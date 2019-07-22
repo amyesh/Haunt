@@ -312,7 +312,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     progressBar.setVisibility(View.INVISIBLE);
-                                                    startActivity(new Intent(CreateUserProfileActivity.this, BrowseProfilesActivity.class));
+                                                    startActivity(new Intent(CreateUserProfileActivity.this, AboutMeActivity.class));
                                                     finish();
                                                 }
                                             })

@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AddUserPreferencesActivity"/>
+        <activity android:name=".OptionalInfoActivity"></activity>
+        <activity android:name=".AboutMeActivity" />
+        <activity android:name=".GenderActivity" />
+        <activity android:name=".AddUserPreferencesActivity" />
         <activity android:name=".ViewMatchesActivity" />
         <activity android:name=".BrowseProfilesActivity" />
         <activity android:name=".CreateUserProfileActivity" />

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".GenderActivity">
+
+    <ProgressBar
+        android:id="@+id/gender_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"/>
+
+    <LinearLayout
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/gender_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textSize="17sp"
+            android:fontFamily="monospace"
+            android:text="@string/gender"
+            android:maxLines="5" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="235dp"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/checkbox_woman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:textColor="@color/pale_grey"
+                android:layout_marginBottom="10dp"
+                android:text="@string/woman" />
+
+            <CheckBox
+                android:id="@+id/checkbox_man"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/man" />
+
+            <CheckBox
+                android:id="@+id/checkbox_androgynous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/androgynous" />
+
+            <CheckBox
+                android:id="@+id/checkbox_binary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/binary" />
+
+            <CheckBox
+                android:id="@+id/checkbox_enby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/enby" />
+
+            <CheckBox
+                android:id="@+id/checkbox_ftm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/female_to_male" />
+
+            <CheckBox
+                android:id="@+id/checkbox_mtf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:textColor="@color/pale_grey"
+                android:layout_marginBottom="10dp"
+                android:text="@string/male_to_female" />
+
+            <CheckBox
+                android:id="@+id/checkbox_fluid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/gender_fluid" />
+
+            <CheckBox
+                android:id="@+id/checkbox_neutral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/gender_neutral" />
+
+            <CheckBox
+                android:id="@+id/checkbox_nonconf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/gender_nonconf" />
+
+            <CheckBox
+                android:id="@+id/checkbox_quest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/gender_quest" />
+
+            <CheckBox
+                android:id="@+id/checkbox_variant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/gender_variant" />
+
+            <CheckBox
+                android:id="@+id/checkbox_queer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/genderqueer" />
+
+            <CheckBox
+                android:id="@+id/checkbox_intersex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/intersex" />
+
+            <CheckBox
+                android:id="@+id/checkbox_nbinary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/non_binary" />
+
+            <CheckBox
+                android:id="@+id/checkbox_pan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/pangender" />
+
+            <CheckBox
+                android:id="@+id/checkbox_poly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/polygender" />
+
+            <CheckBox
+                android:id="@+id/checkbox_trans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/trans" />
+
+            <CheckBox
+                android:id="@+id/checkbox_transm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/trans_man" />
+
+            <CheckBox
+                android:id="@+id/checkbox_transw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/trans_woman" />
+
+            <CheckBox
+                android:id="@+id/checkbox_transp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/trans_person" />
+
+            <CheckBox
+                android:id="@+id/checkbox_twospirit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/two_spirit" />
+
+            <CheckBox
+                android:id="@+id/checkbox_hijra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/hijra" />
+
+            <CheckBox
+                android:id="@+id/checkbox_agen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
+                android:textSize="17sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/pale_grey"
+                android:text="@string/agender" />
+        </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/about_me_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="monospace"
+            android:text="@string/next_text"
+            android:background="@drawable/basic_button"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/missing"
+            android:layout_marginTop="20dp"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/pale_grey"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

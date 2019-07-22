@@ -1,9 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".AddUserPreferencesActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/preferences_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"/>
+
+    <LinearLayout
+        android:id="@+id/preferences"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/interested"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
+            android:text="@string/intersted"
+            android:textSize="17sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="20dp">
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/men"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/men"
+                    android:textStyle="italic"
+                    android:fontFamily="monospace"
+                    android:textSize="16sp"
+                    android:textColor="#797979"
+                    android:onClick="onRadioPrefButtonClicked"/>
+                <RadioButton android:id="@+id/women"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/women"
+                    android:textStyle="italic"
+                    android:fontFamily="monospace"
+                    android:textSize="16sp"
+                    android:textColor="#797979"
+                    android:onClick="onRadioPrefButtonClicked"/>
+                <RadioButton android:id="@+id/everyone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/everyone"
+                    android:textStyle="italic"
+                    android:fontFamily="monospace"
+                    android:textSize="16sp"
+                    android:textColor="#797979"
+                    android:onClick="onRadioPrefButtonClicked"/>
+            </RadioGroup>
+        </RelativeLayout>
+
+
+
+        <Button
+            android:id="@+id/opt_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
+            android:text="@string/next_text"
+            android:background="@drawable/basic_button"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</LinearLayout>

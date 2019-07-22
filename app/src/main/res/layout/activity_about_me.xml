@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".CreateUserProfileActivity">
+
+    <ProgressBar
+        android:id="@+id/about_me_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"/>
+
+    <LinearLayout
+        android:id="@+id/about_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/about_me_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textSize="17sp"
+            android:fontFamily="monospace"
+            android:text="@string/about_me"
+            android:maxLines="5" />
+
+        <EditText
+            android:id="@+id/about_me_blurb"
+            android:layout_width="match_parent"
+            android:layout_height="213dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
+            android:scrollHorizontally="false"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLines="5" />
+
+        <Button
+            android:id="@+id/about_me_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="monospace"
+            android:text="@string/next_text"
+            android:background="@drawable/basic_button"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
