@@ -2,10 +2,13 @@ package com.amy.haunt.util;
 
 import android.app.Application;
 
+import java.util.ArrayList;
+
 public class HauntApi extends Application {
     private String userId;
     private String userEmail;
-    private String userName;
+    private String preference;
+    private ArrayList<String> genders;
     private static HauntApi instance;
 
     public static HauntApi getInstance() {
@@ -14,12 +17,20 @@ public class HauntApi extends Application {
         return instance;
     }
 
-    public String getUserName() {
-        return userName;
+    public ArrayList<String> getGenders() {
+        return genders;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setGenders(ArrayList<String> genders) {
+        this.genders = genders;
+    }
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
     }
 
     public String getUserId() {

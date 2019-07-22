@@ -3,6 +3,7 @@ package com.amy.haunt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
@@ -115,8 +117,11 @@ public class LoginActivity extends AppCompatActivity {
                                                     HauntApi hauntApi = HauntApi.getInstance();
                                                     hauntApi.setUserEmail(snapshot.getString("userEmail"));
                                                     hauntApi.setUserId(snapshot.getString("userId"));
+                                                    hauntApi.setPreference(snapshot.getString("preference"));
+                                                    ArrayList<String> genders = (ArrayList<String>) snapshot.get("genders");
+                                                    hauntApi.setGenders(genders);
+                                                    Log.d("loginAPI", "onEvent: " + genders);
 
-                                                    //Go to ListActivity
                                                     startActivity(new Intent(LoginActivity.this,
                                                             BrowseProfilesActivity.class));
                                                 }
