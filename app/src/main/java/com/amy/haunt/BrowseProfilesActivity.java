@@ -2,7 +2,6 @@ package com.amy.haunt;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,14 +88,14 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                 if (user != null && firebaseAuth != null) {
                     startActivity(new Intent(BrowseProfilesActivity.this,
                             BrowseProfilesActivity.class));
-                    finish();
+//                    finish();
                 }
                 break;
             case R.id.action_matches:
                 if (user != null && firebaseAuth != null) {
                     startActivity(new Intent(BrowseProfilesActivity.this,
                             ViewMatchesActivity.class));
-                    finish();
+//                    finish();
                 }
                 break;
             case R.id.action_signout:
@@ -105,7 +104,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
 
                     startActivity(new Intent(BrowseProfilesActivity.this,
                             LoginActivity.class));
-                    finish();
+//                    finish();
                 }
                 break;
         }

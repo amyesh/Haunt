@@ -16,8 +16,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".VoiceActivity"></activity>
-        <activity android:name=".OptionalInfoActivity"></activity>
+        <activity android:name=".VoiceActivity" />
+        <activity android:name=".OptionalInfoActivity" />
         <activity android:name=".AboutMeActivity" />
         <activity android:name=".GenderActivity" />
         <activity android:name=".AddUserPreferencesActivity" />
