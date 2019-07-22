@@ -2,6 +2,7 @@ package com.amy.haunt;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,20 +16,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amy.haunt.model.UserProfile;
 import com.amy.haunt.ui.UserRecyclerAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.amy.haunt.util.HauntApi;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BrowseProfilesActivity extends AppCompatActivity {
 
@@ -38,11 +38,12 @@ public class BrowseProfilesActivity extends AppCompatActivity {
     private List<UserProfile> usersList;
     private RecyclerView recyclerView;
     private UserRecyclerAdapter userRecyclerAdapter;
+    private String preference;
+    private String currentUserId;
+    private ArrayList<String> currentUserGenders;
 
     private CollectionReference collectionReference = db.collection("Users");
     private TextView noUsersToBrowse;
-    private String preference;
-    private String currentUserId;
     private ArrayList<String> genders;
 //    private ProgressBar progressBar;
 
@@ -67,19 +68,11 @@ public class BrowseProfilesActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        collectionReference.document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot documentSnapshot = task.getResult();
-                    if (documentSnapshot.exists()) {
-                        preference = (String) documentSnapshot.get("preference");
-                        currentUserId = (String) documentSnapshot.get("userId");
-                    }
-                } else {
-                }
-            }
-        });
+        if (HauntApi.getInstance() != null) {
+            currentUserId = HauntApi.getInstance().getUserId();
+            preference = HauntApi.getInstance().getPreference();
+            currentUserGenders = HauntApi.getInstance().getGenders();
+        }
     }
 
     @Override
@@ -125,8 +118,8 @@ public class BrowseProfilesActivity extends AppCompatActivity {
         super.onStart();
         noUsersToBrowse.setVisibility(View.INVISIBLE);
 
-        if (preference == "Men" || preference == "Women") {
-            collectionReference.whereArrayContains("gender",
+        if (Objects.equals(preference, "Male") || Objects.equals(preference, "Female")) {
+            collectionReference.whereArrayContains("genders",
                     preference)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -138,14 +131,14 @@ public class BrowseProfilesActivity extends AppCompatActivity {
 
                                     UserProfile user = users.toObject(UserProfile.class);
                                     String userPreference = user.getPreference();
-                                    boolean contains = genders.contains(userPreference);
 
-                                    if (userPreference != "Everyone") {
-                                        if (contains && user.getUserId() != currentUserId) {
+                                    if (!Objects.equals(userPreference, "Everyone")) { // if userPref does not equal Everyone
+                                        boolean contains = currentUserGenders.contains(userPreference); // if currentUserGenders contains user pref (M or F)
+                                        if (contains && !Objects.equals(user.getUserId(), currentUserId)) { // if it does contain M & isn't the same user, add to list
                                             usersList.add(user);
                                         }
                                     } else {
-                                        if (user.getUserId() != currentUserId) {
+                                        if (!Objects.equals(user.getUserId(), currentUserId)) { // else if their preference is everyone it isn't the current user
                                             usersList.add(user);
                                         }
                                     }
@@ -181,14 +174,15 @@ public class BrowseProfilesActivity extends AppCompatActivity {
 
                                     UserProfile user = users.toObject(UserProfile.class);
                                     String userPreference = user.getPreference();
-                                    boolean contains = genders.contains(userPreference);
 
-                                    if (userPreference != "Everyone") {
-                                        if (contains && user.getUserId() != currentUserId) {
+                                    boolean contains = currentUserGenders.contains(userPreference);
+
+                                    if (!Objects.equals(userPreference, "Everyone")) {
+                                        if (contains && !Objects.equals(user.getUserId(), currentUserId)) {
                                             usersList.add(user);
                                         }
                                     } else {
-                                        if (user.getUserId() != currentUserId) {
+                                        if (!Objects.equals(user.getUserId(), currentUserId)) {
                                             usersList.add(user);
                                         }
                                     }
@@ -213,5 +207,4 @@ public class BrowseProfilesActivity extends AppCompatActivity {
 
         }
     }
-
 }

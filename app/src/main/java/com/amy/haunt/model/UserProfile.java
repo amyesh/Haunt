@@ -49,6 +49,15 @@ public class UserProfile {
         this.genders = genders;
     }
 
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
+    }
+
     public ArrayList<String> getLikes() {
         return likes;
     }
@@ -127,13 +136,5 @@ public class UserProfile {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
-    }
-
-    public String getPreference() {
-        return preference;
-    }
-
-    public void setPreference(String preference) {
-        this.preference = preference;
     }
 }
