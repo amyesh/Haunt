@@ -3,6 +3,7 @@ package com.amy.haunt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
@@ -36,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private Button createAcctButton;
 
-    private AutoCompleteTextView emailAddres;
+    private AutoCompleteTextView emailAddress;
     private EditText password;
 
     private FirebaseAuth firebaseAuth;
@@ -60,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        emailAddres = findViewById(R.id.email);
+        emailAddress = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
         loginButton = findViewById(R.id.email_sign_in_button);
@@ -77,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                loginEmailPasswordUser(emailAddres.getText().toString().trim(),
+                loginEmailPasswordUser(emailAddress.getText().toString().trim(),
                         password.getText().toString().trim());
             }
         });
@@ -115,8 +117,11 @@ public class LoginActivity extends AppCompatActivity {
                                                     HauntApi hauntApi = HauntApi.getInstance();
                                                     hauntApi.setUserEmail(snapshot.getString("userEmail"));
                                                     hauntApi.setUserId(snapshot.getString("userId"));
+                                                    hauntApi.setPreference(snapshot.getString("preference"));
+                                                    ArrayList<String> genders = (ArrayList<String>) snapshot.get("genders");
+                                                    hauntApi.setGenders(genders);
+                                                    Log.d("loginAPI", "onEvent: " + genders);
 
-                                                    //Go to ListActivity
                                                     startActivity(new Intent(LoginActivity.this,
                                                             BrowseProfilesActivity.class));
                                                 }

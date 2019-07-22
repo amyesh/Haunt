@@ -147,11 +147,10 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                         if (documentSnapshot.exists()) {
                             ArrayList<String> likes = (ArrayList<String>) documentSnapshot.get("likes");
                             boolean contains = likes.contains(currentUserId);
-                            if (contains == true) {
+                            if (contains) {
                                 //Todo: create notification (Toast?) that user has matched!
                                 createMatch(likedUser, currentUserId);
                             }
-                        } else {
                         }
                     } else {
                         Log.d("checkMatch", "get failed with ", task.getException());

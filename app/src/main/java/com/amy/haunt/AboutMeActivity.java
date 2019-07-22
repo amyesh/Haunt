@@ -2,11 +2,12 @@ package com.amy.haunt;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,10 +26,9 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddUserPreferencesActivity extends AppCompatActivity implements View.OnClickListener{
+public class AboutMeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button saveInfoButton;
-    private String preference;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser currentUser;
@@ -37,13 +37,14 @@ public class AddUserPreferencesActivity extends AppCompatActivity implements Vie
     private CollectionReference collectionReference = db.collection("Users");
 
     private String currentUserId;
+    private EditText aboutMeEditText;
     private ProgressBar progressBar;
+    private String aboutMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_user_preferences);
-
+        setContentView(R.layout.activity_about_me);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("");
         actionBar.setLogo(R.drawable.haunt_logo_small);
@@ -51,9 +52,10 @@ public class AddUserPreferencesActivity extends AppCompatActivity implements Vie
         actionBar.setDisplayShowHomeEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.preferences_progress);
+        aboutMeEditText = findViewById(R.id.about_me_blurb);
+        progressBar = findViewById(R.id.about_me_progress);
 
-        saveInfoButton = findViewById(R.id.prefs_button);
+        saveInfoButton = findViewById(R.id.about_me_button);
         saveInfoButton.setOnClickListener(this);
 
         if (HauntApi.getInstance() != null) {
@@ -90,51 +92,32 @@ public class AddUserPreferencesActivity extends AppCompatActivity implements Vie
         }
     }
 
-    public void onRadioPrefButtonClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch(view.getId()) {
-            case R.id.men:
-                if (checked)
-                    preference = "Male";
-                    break;
-            case R.id.women:
-                if (checked)
-                    preference = "Female";
-                break;
-            case R.id.everyone:
-                if (checked)
-                    preference = "Everyone";
-                break;
-        }
-    }
-
     @Override
     public void onClick(View view) {
-        if (preference != null) {
-            Map<String, Object> preferenceMap = new HashMap<>();
-            preferenceMap.put("preference", preference);
+        if (!TextUtils.isEmpty(aboutMeEditText.getText().toString())) {
             progressBar.setVisibility(View.VISIBLE);
+            final String aboutMe = aboutMeEditText.getText().toString().trim();
+            Map<String, Object> aboutMeMap = new HashMap<>();
+            aboutMeMap.put("aboutMe", aboutMe);
             collectionReference.document(currentUserId)
-                    .set(preferenceMap, SetOptions.merge())
+                    .set(aboutMeMap, SetOptions.merge())
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Intent intent = new Intent(AddUserPreferencesActivity.this, BrowseProfilesActivity.class);
-                            intent.putExtra("preference", preference);
-                            startActivity(intent);
+                            startActivity(new Intent(AboutMeActivity.this, GenderActivity.class));
                             finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            Log.d("AboutMeOnClick", "onFailure: " + e.getMessage());
                         }
                     });
         } else {
             progressBar.setVisibility(View.INVISIBLE);
-            Toast.makeText(AddUserPreferencesActivity.this,
-                    "Please select at least one gender preference.",
+            Toast.makeText(AboutMeActivity.this,
+                    "Field cannot be empty",
                     Toast.LENGTH_SHORT)
                     .show();
         }

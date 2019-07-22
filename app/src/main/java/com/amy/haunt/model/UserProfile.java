@@ -1,8 +1,6 @@
 package com.amy.haunt.model;
 
 
-import com.google.firebase.firestore.auth.User;
-
 import java.util.ArrayList;
 
 
@@ -11,33 +9,53 @@ public class UserProfile {
     private String lastName;
     private String userId;
     private String height;
-    private String gender;
     private String profilePhotoUrl;
     private String birthday;
     private ArrayList<String> likes;
     private ArrayList<String> matches;
+    private ArrayList<String> genders;
     private String age;
     private String zodiac;
+    private String preference;
 
     public UserProfile() {
     }
 
     public UserProfile(String firstName, String lastName,
                        String userId, String height,
-                       String gender, String profilePhotoUrl,
+                       String profilePhotoUrl, String preference,
                        String birthday, ArrayList<String> likes,
-                       ArrayList<String> matches, String age, String zodiac) {
+                       ArrayList<String> matches, String age,
+                       String zodiac, ArrayList<String> genders) {
+        this.genders = genders;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userId = userId;
         this.height = height;
-        this.gender = gender;
         this.profilePhotoUrl = profilePhotoUrl;
         this.birthday = birthday;
         this.likes = likes;
         this.matches = matches;
         this.age = age;
         this.zodiac = zodiac;
+        this.preference = preference;
+    }
+
+    public ArrayList<String> getGenders() {
+        return genders;
+    }
+
+    public void setGenders(ArrayList<String> genders) {
+        this.genders = genders;
+    }
+
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
     }
 
     public ArrayList<String> getLikes() {
@@ -102,14 +120,6 @@ public class UserProfile {
 
     public void setHeight(String height) {
         this.height = height;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getProfilePhotoUrl() {
