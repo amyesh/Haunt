@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="start"
+    android:gravity="center"
     android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="16dp"
@@ -15,8 +15,7 @@
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="center_vertical"/>
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/create_user_profile"
@@ -42,15 +41,6 @@
             android:fontFamily="monospace"
             android:hint="@string/last_name_hint"
             android:inputType="textPersonName"
-            android:maxLines="1" />
-
-        <EditText
-            android:id="@+id/gender_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
-            android:hint="@string/gender_hint"
             android:maxLines="1" />
 
         <EditText

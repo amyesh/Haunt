@@ -1,8 +1,6 @@
 package com.amy.haunt.model;
 
 
-import com.google.firebase.firestore.auth.User;
-
 import java.util.ArrayList;
 
 
@@ -11,7 +9,6 @@ public class UserProfile {
     private String lastName;
     private String userId;
     private String height;
-    private String gender;
     private String profilePhotoUrl;
     private String birthday;
     private ArrayList<String> likes;
@@ -24,14 +21,14 @@ public class UserProfile {
 
     public UserProfile(String firstName, String lastName,
                        String userId, String height,
-                       String gender, String profilePhotoUrl,
+                       String profilePhotoUrl,
                        String birthday, ArrayList<String> likes,
-                       ArrayList<String> matches, String age, String zodiac) {
+                       ArrayList<String> matches, String age,
+                       String zodiac) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userId = userId;
         this.height = height;
-        this.gender = gender;
         this.profilePhotoUrl = profilePhotoUrl;
         this.birthday = birthday;
         this.likes = likes;
@@ -102,14 +99,6 @@ public class UserProfile {
 
     public void setHeight(String height) {
         this.height = height;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getProfilePhotoUrl() {

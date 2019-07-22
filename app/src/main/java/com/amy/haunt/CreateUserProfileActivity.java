@@ -52,7 +52,6 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
     private EditText firstNameEditText;
     private EditText lastNameEditText;
     private EditText heightEditText;
-    private EditText genderEditText;
     private ImageView addPhotoButton;
     private TextView birthdayTextView;
     private ImageView imageView;
@@ -79,7 +78,6 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
         firstNameEditText = findViewById(R.id.first_name_profile);
         lastNameEditText = findViewById(R.id.last_name_profile);
         heightEditText = findViewById(R.id.height_profile);
-        genderEditText = findViewById(R.id.gender_profile);
         birthdayTextView = findViewById(R.id.birthday_text);
         progressBar = findViewById(R.id.create_user_profile_progress);
         imageView = findViewById(R.id.add_image_view);
@@ -268,7 +266,6 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
         final String firstName = firstNameEditText.getText().toString().trim();
         final String lastName = lastNameEditText.getText().toString().trim();
         final String height = heightEditText.getText().toString().trim();
-        final String gender = genderEditText.getText().toString().trim();
         final String birthday = birthdayTextView.getText().toString().trim();
         final ArrayList<String> likes = new ArrayList<>();
         final ArrayList<String> matches = new ArrayList<>();
@@ -276,7 +273,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
         progressBar.setVisibility(View.VISIBLE);
 
         if (!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(height)
-                && !TextUtils.isEmpty(gender) && !TextUtils.isEmpty(birthday) && imageUri != null) {
+                && !TextUtils.isEmpty(birthday) && imageUri != null) {
 
             final StorageReference filepath = storageReference
                     .child("profile_images")
@@ -296,7 +293,6 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
                                     UserProfile userProfile = new UserProfile();
                                     userProfile.setFirstName(firstName);
                                     userProfile.setLastName(lastName);
-                                    userProfile.setGender(gender);
                                     userProfile.setHeight(height);
                                     userProfile.setProfilePhotoUrl(imageUri);
                                     userProfile.setBirthday(birthday);

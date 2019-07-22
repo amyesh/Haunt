@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +51,6 @@ public class AboutMeActivity extends AppCompatActivity implements View.OnClickLi
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-
         firebaseAuth = FirebaseAuth.getInstance();
         aboutMeEditText = findViewById(R.id.about_me_blurb);
         progressBar = findViewById(R.id.about_me_progress);
@@ -60,6 +60,7 @@ public class AboutMeActivity extends AppCompatActivity implements View.OnClickLi
 
         if (HauntApi.getInstance() != null) {
             currentUserId = HauntApi.getInstance().getUserId();
+            Log.d("userId", "onCreate: " + HauntApi.getInstance().getUserEmail());
         }
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -99,7 +100,7 @@ public class AboutMeActivity extends AppCompatActivity implements View.OnClickLi
             Map<String, Object> aboutMeMap = new HashMap<>();
             aboutMeMap.put("aboutMe", aboutMe);
             collectionReference.document(currentUserId)
-                    .set(aboutMeMap)
+                    .set(aboutMeMap, SetOptions.merge())
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
