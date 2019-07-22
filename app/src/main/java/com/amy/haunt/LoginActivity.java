@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private Button createAcctButton;
 
-    private AutoCompleteTextView emailAddres;
+    private AutoCompleteTextView emailAddress;
     private EditText password;
 
     private FirebaseAuth firebaseAuth;
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        emailAddres = findViewById(R.id.email);
+        emailAddress = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
         loginButton = findViewById(R.id.email_sign_in_button);
@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                loginEmailPasswordUser(emailAddres.getText().toString().trim(),
+                loginEmailPasswordUser(emailAddress.getText().toString().trim(),
                         password.getText().toString().trim());
             }
         });

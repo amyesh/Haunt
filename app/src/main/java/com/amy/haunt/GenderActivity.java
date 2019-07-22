@@ -2,7 +2,6 @@ package com.amy.haunt;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -59,7 +58,6 @@ public class GenderActivity extends AppCompatActivity implements View.OnClickLis
 
         if (HauntApi.getInstance() != null) {
             currentUserId = HauntApi.getInstance().getUserId();
-            Log.d("userId", "onCreate: " + HauntApi.getInstance().getUserEmail());
         }
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -117,6 +115,9 @@ public class GenderActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
 
         if (genders.size() > 0) {
+
+            HauntApi.getInstance().setGenders(genders);
+
             Map<String, ArrayList> genderMap = new HashMap<>();
             genderMap.put("genders", genders);
             progressBar.setVisibility(View.VISIBLE);

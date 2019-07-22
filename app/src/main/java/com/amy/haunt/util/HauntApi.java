@@ -5,21 +5,12 @@ import android.app.Application;
 public class HauntApi extends Application {
     private String userId;
     private String userEmail;
-    private String userName;
     private static HauntApi instance;
 
     public static HauntApi getInstance() {
         if (instance == null)
             instance = new HauntApi();
         return instance;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getUserId() {
