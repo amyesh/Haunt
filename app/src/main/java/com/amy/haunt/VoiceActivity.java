@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -35,7 +35,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.amy.haunt.util.HauntApi;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -54,18 +53,10 @@ import java.util.HashMap;
 public class VoiceActivity extends AppCompatActivity {
 
     private static final String TAG = "VoiceActivity";
-    private static String identity = "bob";
+    private static String identity = "Chuck";
 
-    /*
-     * You must provide the URL to the publicly accessible Twilio access token server route
-     *
-     * For example: https://myurl.io/accessToken
-     *
-     * If your token server is written in PHP, TWILIO_ACCESS_TOKEN_SERVER_URL needs .php extension at the end.
-     *
-     * For example : https://myurl.io/accessToken.php
-     */
-    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://54dffc5b.ngrok.io/accessToken";
+
+    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://3549ce8a.ngrok.io/accessToken";
 
     private static final int MIC_PERMISSION_REQUEST_CODE = 1;
     private static final int SNACKBAR_DURATION = 4000;
@@ -110,10 +101,6 @@ public class VoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice);
 
-        if (HauntApi.getInstance() != null) {
-            currentUserId = HauntApi.getInstance().getUserId();
-        }
-
         // These flags ensure that the activity can be launched when the screen is locked.
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
@@ -128,7 +115,7 @@ public class VoiceActivity extends AppCompatActivity {
         muteActionFab = findViewById(R.id.mute_action_fab);
         chronometer = findViewById(R.id.chronometer);
 
-        callActionFab.setOnClickListener(callActionFabClickListener());
+//        callActionFab.setOnClickListener(callActionFabClickListener());
         hangupActionFab.setOnClickListener(hangupActionFabClickListener());
         holdActionFab.setOnClickListener(holdActionFabClickListener());
         muteActionFab.setOnClickListener(muteActionFabClickListener());
@@ -164,7 +151,6 @@ public class VoiceActivity extends AppCompatActivity {
          * Displays a call dialog if the intent contains a call invite
          */
         handleIncomingCallIntent(getIntent());
-
         /*
          * Ensure the microphone permission is enabled
          */
@@ -173,6 +159,12 @@ public class VoiceActivity extends AppCompatActivity {
         } else {
             retrieveAccessToken();
         }
+
+        Intent createIntent = getIntent();
+        String createName = createIntent.getStringExtra("name");
+
+        alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this, createName);
+        alertDialog.show();
     }
 
     @Override
@@ -384,8 +376,10 @@ public class VoiceActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Place a call
-                EditText contact = (EditText) ((AlertDialog) dialog).findViewById(R.id.contact);
+                // Todo automatically populate value here?
+                TextView contact = ((AlertDialog) dialog).findViewById(R.id.contact);
                 params.put("to", contact.getText().toString());
+
                 ConnectOptions connectOptions = new ConnectOptions.Builder(accessToken)
                         .params(params)
                         .build();
@@ -442,17 +436,6 @@ public class VoiceActivity extends AppCompatActivity {
             Log.i(TAG, "Registering with FCM");
             Voice.register(accessToken, Voice.RegistrationChannel.FCM, fcmToken, registrationListener);
         }
-    }
-
-    private View.OnClickListener callActionFabClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Todo: alter this alertDialog to be recyler view data - intent?
-                alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this);
-                alertDialog.show();
-            }
-        };
     }
 
     private View.OnClickListener hangupActionFabClickListener() {
@@ -634,7 +617,8 @@ public class VoiceActivity extends AppCompatActivity {
 
     public static AlertDialog createCallDialog(final DialogInterface.OnClickListener callClickListener,
                                                final DialogInterface.OnClickListener cancelClickListener,
-                                               final Context context) {
+                                               final Context context,
+                                               final String name) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         alertDialogBuilder.setIcon(R.drawable.ic_call_black_24dp);
@@ -645,8 +629,8 @@ public class VoiceActivity extends AppCompatActivity {
 
         LayoutInflater li = LayoutInflater.from(context);
         View dialogView = li.inflate(R.layout.dialog_call, null);
-        final EditText contact = (EditText) dialogView.findViewById(R.id.contact);
-        contact.setHint(R.string.callee);
+        final TextView contact = dialogView.findViewById(R.id.contact);
+        contact.setText(name);
         alertDialogBuilder.setView(dialogView);
 
         return alertDialogBuilder.create();

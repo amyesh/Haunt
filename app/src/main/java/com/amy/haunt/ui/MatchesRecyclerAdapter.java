@@ -26,7 +26,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
 
     private Context context;
     private List<UserProfile> matchProfileList;
-    private String currentUserId;
+    private String matchName;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("Users");
@@ -51,6 +51,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
 
         viewHolder.name.setText(userProfile.getFirstName());
         imageUrl = userProfile.getProfilePhotoUrl();
+        matchName = userProfile.getFirstName();
 
         Picasso.get()
                 .load(imageUrl)
@@ -105,6 +106,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
                 public void onClick(View view) {
                     //Todo: Add functionality to call user
                     Intent makeCall = new Intent(ctx, VoiceActivity.class);
+                    makeCall.putExtra("name", matchName);
 
                     ctx.startActivity(makeCall);
 //                    int position = getLayoutPosition();
