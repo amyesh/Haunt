@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.amy.haunt.R;
 import com.amy.haunt.VoiceActivity;
 import com.amy.haunt.model.UserProfile;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -69,7 +70,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
         public TextView name;
         public ImageView image;
         public CardView viewProfileButton;
-        public ImageView callButton;
+        public FloatingActionButton callButton;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);

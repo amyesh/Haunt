@@ -2,6 +2,7 @@ package com.amy.haunt;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -167,7 +168,6 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             if (!queryDocumentSnapshots.isEmpty()) {
-                                Log.d("where", "onSuccess: in here");
 
                                 noUsersToBrowse.setVisibility(View.INVISIBLE);
                                 for (QueryDocumentSnapshot users : queryDocumentSnapshots) {
@@ -176,8 +176,6 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                                     String userPreference = user.getPreference();
 
                                     boolean contains = currentUserGenders.contains(userPreference);
-                                    Log.d("where", "onSuccess: " + currentUserGenders);
-
 
                                     if (!Objects.equals(userPreference, "Everyone")) {
                                         if (contains && !Objects.equals(user.getUserId(), currentUserId)) {
@@ -197,7 +195,6 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                             } else {
                                 noUsersToBrowse.setVisibility(View.VISIBLE);
                             }
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

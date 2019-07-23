@@ -35,6 +35,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.amy.haunt.util.HauntApi;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -53,7 +54,8 @@ import java.util.HashMap;
 public class VoiceActivity extends AppCompatActivity {
 
     private static final String TAG = "VoiceActivity";
-    private static String identity = "alice";
+    private static String identity = "bob";
+
     /*
      * You must provide the URL to the publicly accessible Twilio access token server route
      *
@@ -63,7 +65,7 @@ public class VoiceActivity extends AppCompatActivity {
      *
      * For example : https://myurl.io/accessToken.php
      */
-    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://3108f650.ngrok.io/accessToken";
+    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://54dffc5b.ngrok.io/accessToken";
 
     private static final int MIC_PERMISSION_REQUEST_CODE = 1;
     private static final int SNACKBAR_DURATION = 4000;
@@ -98,6 +100,7 @@ public class VoiceActivity extends AppCompatActivity {
     private CallInvite activeCallInvite;
     private Call activeCall;
     private int activeCallNotificationId;
+    private String currentUserId;
 
     RegistrationListener registrationListener = registrationListener();
     Call.Listener callListener = callListener();
@@ -106,6 +109,10 @@ public class VoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice);
+
+        if (HauntApi.getInstance() != null) {
+            currentUserId = HauntApi.getInstance().getUserId();
+        }
 
         // These flags ensure that the activity can be launched when the screen is locked.
         Window window = getWindow();
@@ -441,6 +448,7 @@ public class VoiceActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Todo: alter this alertDialog to be recyler view data - intent?
                 alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this);
                 alertDialog.show();
             }
