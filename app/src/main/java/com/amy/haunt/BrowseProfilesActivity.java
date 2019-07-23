@@ -162,12 +162,13 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                     });
 
         } else {
-            collectionReference.whereGreaterThan("age", 0)
-                    .get()
+            collectionReference.get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             if (!queryDocumentSnapshots.isEmpty()) {
+                                Log.d("where", "onSuccess: in here");
+
                                 noUsersToBrowse.setVisibility(View.INVISIBLE);
                                 for (QueryDocumentSnapshot users : queryDocumentSnapshots) {
 
@@ -175,6 +176,8 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                                     String userPreference = user.getPreference();
 
                                     boolean contains = currentUserGenders.contains(userPreference);
+                                    Log.d("where", "onSuccess: " + currentUserGenders);
+
 
                                     if (!Objects.equals(userPreference, "Everyone")) {
                                         if (contains && !Objects.equals(user.getUserId(), currentUserId)) {
