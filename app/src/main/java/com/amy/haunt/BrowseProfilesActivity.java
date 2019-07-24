@@ -2,7 +2,6 @@ package com.amy.haunt;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -126,6 +125,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             if (!queryDocumentSnapshots.isEmpty()) {
+                                usersList.clear();
                                 noUsersToBrowse.setVisibility(View.INVISIBLE);
                                 for (QueryDocumentSnapshot users : queryDocumentSnapshots) {
 

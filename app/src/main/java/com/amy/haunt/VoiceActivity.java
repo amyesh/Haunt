@@ -54,10 +54,10 @@ import java.util.HashMap;
 public class VoiceActivity extends AppCompatActivity {
 
     private static final String TAG = "VoiceActivity";
-    private static String identity = "chuck";
+    private static String identity = "Chuck";
 
 
-    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://2b43b60d.ngrok.io/accessToken";
+    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://810ba49c.ngrok.io/accessToken";
 
     private static final int MIC_PERMISSION_REQUEST_CODE = 1;
     private static final int SNACKBAR_DURATION = 4000;

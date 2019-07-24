@@ -119,6 +119,7 @@ public class ViewMatchesActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (!queryDocumentSnapshots.isEmpty()) {
+                            matchesList.clear();
                             noMatches.setVisibility(View.INVISIBLE);
                             for (QueryDocumentSnapshot users : queryDocumentSnapshots) {
                                 UserProfile user = users.toObject(UserProfile.class);
