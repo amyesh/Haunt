@@ -28,7 +28,7 @@
     <string name="match_name">Name</string>
     <string name="birthday">select birthday</string>
     <string name="callee">client identity or phone number</string>
-    <string name="callHint">Dial a client name or phone number. Leaving the field empty results in an automated response.</string>
+    <!--<string name="callHint">Dial a client name or phone number. Leaving the field empty results in an automated response.</string>-->
     <string name="turn_speaker_on">Speaker ON</string>
     <string name="about_me">Surprise me:</string>
     <string name="have_kids">Do you have kids?</string>

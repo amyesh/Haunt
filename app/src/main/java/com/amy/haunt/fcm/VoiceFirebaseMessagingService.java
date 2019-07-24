@@ -129,6 +129,7 @@ public class VoiceFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
+
     private void cancelNotification(CancelledCallInvite cancelledCallInvite) {
         SoundPoolManager.getInstance((this)).stopRinging();
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
