@@ -127,6 +127,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             if (!queryDocumentSnapshots.isEmpty()) {
                                 noUsersToBrowse.setVisibility(View.INVISIBLE);
+                                usersList.clear();
                                 for (QueryDocumentSnapshot users : queryDocumentSnapshots) {
 
                                     UserProfile user = users.toObject(UserProfile.class);
