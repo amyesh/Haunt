@@ -114,6 +114,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
                     int position = getLayoutPosition();
                     String likedUserId = userProfileList.get(position).getUserId();
+                    likeButton.setImageResource(R.drawable.liked_button_large);
                     Log.d("likeButton", "onClick: likedUserId " + likedUserId + " Current User ID: " + currentUserId);
 
                     saveUserLike(likedUserId);
