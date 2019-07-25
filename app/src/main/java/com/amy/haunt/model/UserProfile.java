@@ -1,21 +1,38 @@
 package com.amy.haunt.model;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 
-public class UserProfile {
+public class UserProfile implements Parcelable {
+    @SerializedName("first_name")
     private String firstName;
+    @SerializedName("first_name")
     private String lastName;
+    @SerializedName("last_name")
     private String userId;
+    @SerializedName("user_id")
     private String height;
+    @SerializedName("profile_photo_url")
     private String profilePhotoUrl;
+    @SerializedName("birthday")
     private String birthday;
+    @SerializedName("likes")
     private ArrayList<String> likes;
+    @SerializedName("matches")
     private ArrayList<String> matches;
+    @SerializedName("genders")
     private ArrayList<String> genders;
+    @SerializedName("age")
     private String age;
+    @SerializedName("zodiac")
     private String zodiac;
+    @SerializedName("preference")
     private String preference;
 
     public UserProfile() {
@@ -137,4 +154,55 @@ public class UserProfile {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.firstName);
+        dest.writeString(this.lastName);
+        dest.writeString(this.userId);
+        dest.writeString(this.height);
+        dest.writeList(this.likes);
+        dest.writeString(this.profilePhotoUrl);
+        dest.writeString(this.preference);
+        dest.writeString(this.birthday);
+        dest.writeList(this.matches);
+        dest.writeString(this.age);
+        dest.writeString(this.zodiac);
+        dest.writeList(this.genders);
+    }
+
+    protected UserProfile(Parcel in) {
+        this.firstName = in.readString();
+        this.lastName = in.readString();
+        this.userId = in.readString();
+        this.height = in.readString();
+        this.profilePhotoUrl = in.readString();
+        this.preference = in.readString();
+        this.birthday = in.readString();
+        this.likes = new ArrayList<String>();
+        in.readList(this.likes, String.class.getClassLoader());
+        this.matches = new ArrayList<String>();
+        in.readList(this.matches, String.class.getClassLoader());
+        this.genders = new ArrayList<String>();
+        in.readList(this.genders, String.class.getClassLoader());
+        this.age = in.readString();
+        this.zodiac = in.readString();
+    }
+
+    public static final Parcelable.Creator<UserProfile> CREATOR = new Parcelable.Creator<UserProfile>() {
+        @Override
+        public UserProfile createFromParcel(Parcel source) {
+            return new UserProfile(source);
+        }
+
+        @Override
+        public UserProfile[] newArray(int size) {
+            return new UserProfile[size];
+        }
+    };
 }

@@ -33,6 +33,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     private Context context;
     private List<UserProfile> userProfileList;
     private String currentUserId;
+    private int currentPosition;
+    private ArrayList<String> likes;
     private String userHeading;
     private String zodiac_signs;
 
@@ -64,6 +66,16 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         viewHolder.astro_sign.setText(zodiac_signs);
         imageUrl = userProfile.getProfilePhotoUrl();
 
+        if (HauntApi.getInstance() != null) {
+            likes = HauntApi.getInstance().getLikes();
+        }
+        boolean contains = likes.contains(userProfile.getUserId());
+        if (contains) {
+            viewHolder.likeButton.setImageResource(R.drawable.liked_button_large);
+        } else {
+            viewHolder.likeButton.setImageResource(R.drawable.like_button_large);
+        }
+
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.image_loading_bg)
@@ -73,6 +85,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
 //        viewHolder.blurb.setText(userProfile.getLastName());
 //        viewHolder.compatibility.setText(userProfile.getBirthday());
+
     }
 
     @Override
@@ -106,16 +119,14 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    context.startActivity();
-
-                    if (HauntApi.getInstance() != null) {
-                        currentUserId = HauntApi.getInstance().getUserId();
-                    }
 
                     int position = getLayoutPosition();
                     String likedUserId = userProfileList.get(position).getUserId();
-                    likeButton.setImageResource(R.drawable.liked_button_large);
-                    Log.d("likeButton", "onClick: likedUserId " + likedUserId + " Current User ID: " + currentUserId);
+
+                    if (HauntApi.getInstance() != null) {
+                        currentUserId = HauntApi.getInstance().getUserId();
+                        HauntApi.getInstance().setPosition(position);
+                    }
 
                     saveUserLike(likedUserId);
                 }
@@ -129,7 +140,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                     @Override
                     public void onSuccess(Void aVoid) {
                         checkUserMatch(likedUser, currentUserId);
-                        Log.d("AddLikeInRecyclerAdapter", "onSuccess: " + likedUser + " Current User: " + currentUserId);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -149,7 +159,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                             ArrayList<String> likes = (ArrayList<String>) documentSnapshot.get("likes");
                             boolean contains = likes.contains(currentUserId);
                             if (contains) {
-                                //Todo: create notification (Toast?) that user has matched!
+                                //Todo: create notification (AlertDialog) that user has matched!
                                 createMatch(likedUser, currentUserId);
                             }
                         }

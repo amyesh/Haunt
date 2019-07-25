@@ -64,8 +64,9 @@
                     android:layout_height="53dp"
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
+                    android:clickable="true"
                     android:contentDescription="@string/like_user_button_desc"
-                    android:src="@drawable/like_button_large" />
+                    android:focusable="true" />
 
             </LinearLayout>
         </RelativeLayout>

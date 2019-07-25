@@ -9,12 +9,30 @@ public class HauntApi extends Application {
     private String userEmail;
     private String preference;
     private ArrayList<String> genders;
+    private ArrayList<String> likes;
     private static HauntApi instance;
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     public static HauntApi getInstance() {
         if (instance == null)
             instance = new HauntApi();
         return instance;
+    }
+
+    public ArrayList<String> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(ArrayList<String> likes) {
+        this.likes = likes;
     }
 
     public ArrayList<String> getGenders() {
