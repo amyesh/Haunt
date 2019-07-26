@@ -34,12 +34,14 @@ public class UserProfile implements Parcelable {
     private String zodiac;
     @SerializedName("preference")
     private String preference;
+    @SerializedName("aboutMe")
+    private String aboutMe;
 
     public UserProfile() {
     }
 
     public UserProfile(String firstName, String lastName,
-                       String userId, String height,
+                       String userId, String height, String aboutMe,
                        String profilePhotoUrl, String preference,
                        String birthday, ArrayList<String> likes,
                        ArrayList<String> matches, String age,
@@ -56,6 +58,15 @@ public class UserProfile implements Parcelable {
         this.age = age;
         this.zodiac = zodiac;
         this.preference = preference;
+        this.aboutMe = aboutMe;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
     }
 
     public ArrayList<String> getGenders() {

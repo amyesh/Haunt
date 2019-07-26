@@ -60,7 +60,6 @@ public class AboutMeActivity extends AppCompatActivity implements View.OnClickLi
 
         if (HauntApi.getInstance() != null) {
             currentUserId = HauntApi.getInstance().getUserId();
-            Log.d("userId", "onCreate: " + HauntApi.getInstance().getUserEmail());
         }
 
         authStateListener = new FirebaseAuth.AuthStateListener() {

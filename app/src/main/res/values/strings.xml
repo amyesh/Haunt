@@ -63,4 +63,8 @@
     <string name="women">Women</string>
     <string name="men">Men</string>
     <string name="intersted">Who do you want to date?</string>
+    <string name="view_matches">View Matches</string>
+    <string name="matched">It\'s a match!</string>
+    <string name="keep_browsing">Keep browsing</string>
+    <string name="match_toast">It\'s a match!</string>
 </resources>

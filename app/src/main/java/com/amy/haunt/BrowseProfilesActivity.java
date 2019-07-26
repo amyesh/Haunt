@@ -2,6 +2,7 @@ package com.amy.haunt;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -149,7 +150,9 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                                         usersList);
                                 recyclerView.setAdapter(userRecyclerAdapter);
                                 userRecyclerAdapter.notifyDataSetChanged();
-                                recyclerView.smoothScrollToPosition(HauntApi.getInstance().getPosition());
+//                                if (HauntApi.getInstance().getPosition() != 0) {
+                                    recyclerView.scrollToPosition(HauntApi.getInstance().getPosition());
+//                                }
                             } else {
                                 noUsersToBrowse.setVisibility(View.VISIBLE);
                             }
@@ -169,10 +172,10 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             if (!queryDocumentSnapshots.isEmpty()) {
+                                usersList.clear();
 
                                 noUsersToBrowse.setVisibility(View.INVISIBLE);
                                 for (QueryDocumentSnapshot users : queryDocumentSnapshots) {
-                                    usersList.clear();
                                     UserProfile user = users.toObject(UserProfile.class);
                                     String userPreference = user.getPreference();
 
@@ -180,10 +183,14 @@ public class BrowseProfilesActivity extends AppCompatActivity {
 
                                     if (!Objects.equals(userPreference, "Everyone")) {
                                         if (contains && !Objects.equals(user.getUserId(), currentUserId)) {
+                                            Log.d("wtf", "onSuccess: Everyone");
+
                                             usersList.add(user);
                                         }
                                     } else {
                                         if (!Objects.equals(user.getUserId(), currentUserId)) {
+                                            Log.d("wtf", "onSuccess: prefers Male");
+
                                             usersList.add(user);
                                         }
                                     }
@@ -192,9 +199,10 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                                         usersList);
                                 recyclerView.setAdapter(userRecyclerAdapter);
                                 userRecyclerAdapter.notifyDataSetChanged();
-                                recyclerView.smoothScrollToPosition(HauntApi.getInstance().getPosition());
-
-
+//                                if (HauntApi.getInstance().getPosition() != 0) {
+                                    recyclerView.scrollToPosition(HauntApi.getInstance().getPosition());
+//                                }
+                                Log.d("wtf", "onSuccess: " + usersList);
                             } else {
                                 noUsersToBrowse.setVisibility(View.VISIBLE);
                             }

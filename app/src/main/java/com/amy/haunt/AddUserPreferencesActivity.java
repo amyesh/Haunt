@@ -2,7 +2,6 @@ package com.amy.haunt;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -58,7 +57,6 @@ public class AddUserPreferencesActivity extends AppCompatActivity implements Vie
 
         if (HauntApi.getInstance() != null) {
             currentUserId = HauntApi.getInstance().getUserId();
-            Log.d("userId", "onCreate: " + HauntApi.getInstance().getUserEmail());
         }
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -114,6 +112,8 @@ public class AddUserPreferencesActivity extends AppCompatActivity implements Vie
         if (preference != null) {
             Map<String, Object> preferenceMap = new HashMap<>();
             preferenceMap.put("preference", preference);
+            HauntApi hauntApi = HauntApi.getInstance();
+            hauntApi.setPreference(preference);
             progressBar.setVisibility(View.VISIBLE);
             collectionReference.document(currentUserId)
                     .set(preferenceMap, SetOptions.merge())
@@ -121,7 +121,6 @@ public class AddUserPreferencesActivity extends AppCompatActivity implements Vie
                         @Override
                         public void onSuccess(Void aVoid) {
                             Intent intent = new Intent(AddUserPreferencesActivity.this, BrowseProfilesActivity.class);
-                            intent.putExtra("preference", preference);
                             startActivity(intent);
                             finish();
                         }

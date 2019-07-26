@@ -60,6 +60,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
     private String age;
     private String zodiac;
 
+
     private DatePickerDialog.OnDateSetListener onSetListener;
 
     @Override
@@ -290,7 +291,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
 
                                     String imageUri = uri.toString();
 
-                                    UserProfile userProfile = new UserProfile();
+                                    final UserProfile userProfile = new UserProfile();
                                     userProfile.setFirstName(firstName);
                                     userProfile.setLastName(lastName);
                                     userProfile.setHeight(height);
@@ -308,6 +309,10 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     progressBar.setVisibility(View.INVISIBLE);
+
+                                                    HauntApi hauntApi = HauntApi.getInstance();
+                                                    hauntApi.setUserId(userProfile.getUserId());
+
                                                     startActivity(new Intent(CreateUserProfileActivity.this, AboutMeActivity.class));
                                                     finish();
                                                 }
