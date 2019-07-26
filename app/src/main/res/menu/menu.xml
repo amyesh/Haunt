@@ -12,13 +12,11 @@
     <item android:id="@+id/action_signout"
         android:title="@string/menu_signout"
         app:showAsAction="never" />
-    <item android:id="@+id/speaker_menu_item"
-        android:title="@string/turn_speaker_on"
-        android:icon="@drawable/ic_volume_up_white_24dp"
-        app:showAsAction="ifRoom"/>
+
+    <!--<item android:id="@+id/speaker_menu_item"-->
+        <!--android:title="@string/turn_speaker_on"-->
+        <!--android:icon="@drawable/ic_volume_up_white_24dp"-->
+        <!--app:showAsAction="never"/>-->
 
 </menu>
-
-    <!--android:icon="@android:drawable/stat_sys_phone_call"-->
-    <!--android:icon="@android:drawable/ic_dialog_dialer"-->
 

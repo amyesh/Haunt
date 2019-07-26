@@ -20,7 +20,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -54,10 +53,10 @@ import java.util.HashMap;
 public class VoiceActivity extends AppCompatActivity {
 
     private static final String TAG = "VoiceActivity";
-    private static String identity = "Butter";
+    private static String identity = "Toots";
 
 
-    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://7376eb37.ngrok.io/accessToken";
+    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://9fb3e2b6.ngrok.io/accessToken";
 
     private static final int MIC_PERMISSION_REQUEST_CODE = 1;
     private static final int SNACKBAR_DURATION = 4000;
@@ -608,21 +607,21 @@ public class VoiceActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.speaker_menu_item:
-                if (audioManager.isSpeakerphoneOn()) {
-                    audioManager.setSpeakerphoneOn(false);
-                    item.setIcon(R.drawable.ic_phonelink_ring_white_24dp);
-                } else {
-                    audioManager.setSpeakerphoneOn(true);
-                    item.setIcon(R.drawable.ic_volume_up_white_24dp);
-                }
-                break;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.speaker_menu_item:
+//                if (audioManager.isSpeakerphoneOn()) {
+//                    audioManager.setSpeakerphoneOn(false);
+//                    item.setIcon(R.drawable.ic_phonelink_ring_white_24dp);
+//                } else {
+//                    audioManager.setSpeakerphoneOn(true);
+//                    item.setIcon(R.drawable.ic_volume_up_white_24dp);
+//                }
+//                break;
+//        }
+//        return true;
+//    }
 
     public static AlertDialog createCallDialog(final DialogInterface.OnClickListener callClickListener,
                                                final DialogInterface.OnClickListener cancelClickListener,
