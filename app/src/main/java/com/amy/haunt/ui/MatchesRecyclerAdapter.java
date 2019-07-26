@@ -1,6 +1,7 @@
 package com.amy.haunt.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amy.haunt.R;
+import com.amy.haunt.VoiceActivity;
 import com.amy.haunt.model.UserProfile;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -53,7 +56,8 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
                 .load(imageUrl)
                 .placeholder(R.drawable.image_loading_bg)
                 .resize(1000,1000)
-                .centerInside()                .into(viewHolder.image);
+                .centerInside()
+                .into(viewHolder.image);
     }
 
     @Override
@@ -66,9 +70,9 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
         public TextView name;
         public ImageView image;
         public CardView viewProfileButton;
-        public ImageView callButton;
+        public FloatingActionButton callButton;
 
-        public ViewHolder(@NonNull View itemView, Context ctx) {
+        public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context = ctx;
 
@@ -100,6 +104,9 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
                 @Override
                 public void onClick(View view) {
                     //Todo: Add functionality to call user
+                    Intent makeCall = new Intent(ctx, VoiceActivity.class);
+
+                    ctx.startActivity(makeCall);
 //                    int position = getLayoutPosition();
 //
 //                    //creating an intent

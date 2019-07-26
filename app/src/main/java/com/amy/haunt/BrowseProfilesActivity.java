@@ -151,7 +151,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                                 recyclerView.setAdapter(userRecyclerAdapter);
                                 userRecyclerAdapter.notifyDataSetChanged();
 //                                if (HauntApi.getInstance().getPosition() != 0) {
-                                    recyclerView.scrollToPosition(HauntApi.getInstance().getPosition());
+                                recyclerView.scrollToPosition(HauntApi.getInstance().getPosition());
 //                                }
                             } else {
                                 noUsersToBrowse.setVisibility(View.VISIBLE);
@@ -200,7 +200,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                                 recyclerView.setAdapter(userRecyclerAdapter);
                                 userRecyclerAdapter.notifyDataSetChanged();
 //                                if (HauntApi.getInstance().getPosition() != 0) {
-                                    recyclerView.scrollToPosition(HauntApi.getInstance().getPosition());
+                                recyclerView.scrollToPosition(HauntApi.getInstance().getPosition());
 //                                }
                                 Log.d("wtf", "onSuccess: " + usersList);
                             } else {
@@ -218,6 +218,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
         }
     }
 }
+
 
 
 //public class BrowseProfilesActivity extends AppCompatActivity {

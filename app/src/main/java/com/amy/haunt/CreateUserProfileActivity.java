@@ -311,7 +311,8 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
                                                     progressBar.setVisibility(View.INVISIBLE);
 
                                                     HauntApi hauntApi = HauntApi.getInstance();
-                                                    hauntApi.setUserId(userProfile.getUserId());
+                                                    hauntApi.setUserId(currentUserId);
+                                                    hauntApi.setLikes(likes);
 
                                                     startActivity(new Intent(CreateUserProfileActivity.this, AboutMeActivity.class));
                                                     finish();

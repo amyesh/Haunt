@@ -71,6 +71,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
         if (HauntApi.getInstance() != null) {
             likes = HauntApi.getInstance().getLikes();
+            Log.d("logic", "onBindViewHolder: there is an instance of Haunt API" + likes);
         }
         boolean contains = likes.contains(userProfile.getUserId());
         if (contains) {
@@ -107,18 +108,18 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView name,
-        astro_sign, blurb;
+                astro_sign, blurb;
 //        compatibility;
 
         public ImageView image;
-        public ImageView matchImage;
+//        public ImageView matchImage;
         public ImageView likeButton;
 
         public ViewHolder(@NonNull View itemView, Context ctx) {
             super(itemView);
             context = ctx;
 
-            matchImage = itemView.findViewById(R.id.match_toast_image);
+//            matchImage = itemView.findViewById(R.id.match_toast_image);
             name = itemView.findViewById(R.id.browse_users_name);
             astro_sign = itemView.findViewById(R.id.browse_users_sign);
             image = itemView.findViewById(R.id.browse_users_image);
@@ -163,19 +164,19 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
         private void saveUserLike(final String likedUser) {
             collectionReference.document(currentUserId)
-                .update("likes", FieldValue.arrayUnion(likedUser))
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        checkUserMatch(likedUser, currentUserId);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("AddLikeInRecyclerAdapter", "onFailure: " + e.getMessage());
-                    }
-                });
+                    .update("likes", FieldValue.arrayUnion(likedUser))
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            checkUserMatch(likedUser, currentUserId);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("AddLikeInRecyclerAdapter", "onFailure: " + e.getMessage());
+                        }
+                    });
         }
         private void checkUserMatch(final String likedUser, final String currentUserId) {
             collectionReference.document(likedUser).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -236,13 +237,13 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     }
 
     public String randomSignFromArray()
-        {
-            String[] arr={"Capricorn", "Aquarius", "Virgo", "Taurus", "Sagittarius", "Cancer", "Leo", "Libra", "Aries", "Scorpio", "Gemini", "Pisces"};
-            Random r = new Random();
-            int randomNumber=r.nextInt(arr.length);
+    {
+        String[] arr={"Capricorn", "Aquarius", "Virgo", "Taurus", "Sagittarius", "Cancer", "Leo", "Libra", "Aries", "Scorpio", "Gemini", "Pisces"};
+        Random r = new Random();
+        int randomNumber=r.nextInt(arr.length);
 
-            return arr[randomNumber];
-        }
+        return arr[randomNumber];
+    }
 
     private void showToast() {
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -256,5 +257,4 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         toast.show();
     }
 }
-
 
