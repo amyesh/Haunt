@@ -22,6 +22,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+
 public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecyclerAdapter.ViewHolder> {
 
     private Context context;
@@ -56,6 +58,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
                 .load(imageUrl)
                 .placeholder(R.drawable.image_loading_bg)
                 .resize(1000,1000)
+                .transform(new CropCircleTransformation())
                 .centerInside()
                 .into(viewHolder.image);
     }

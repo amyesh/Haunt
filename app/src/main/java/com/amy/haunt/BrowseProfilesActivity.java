@@ -48,14 +48,23 @@ public class BrowseProfilesActivity extends AppCompatActivity {
     private ArrayList<String> genders;
 //    private ProgressBar progressBar;
 
+//    private void setToolBar(){
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        toolbar.setBackgroundColor(getResources().getColor(colorActionBar));
+//        toolbar.setLogo(R.drawable.logoactionbar);
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_profiles);
+        Objects.requireNonNull(getSupportActionBar()).setElevation(5);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("");
-        actionBar.setLogo(R.drawable.haunt_logo_small);
+        actionBar.setLogo(R.drawable.haunt_blk_smallish);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 

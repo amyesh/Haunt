@@ -28,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ViewMatchesActivity extends AppCompatActivity {
 
@@ -48,9 +49,10 @@ public class ViewMatchesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_matches);
+        Objects.requireNonNull(getSupportActionBar()).setElevation(5);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("");
-        actionBar.setLogo(R.drawable.haunt_logo_small);
+        actionBar.setLogo(R.drawable.haunt_blk_smallish);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 

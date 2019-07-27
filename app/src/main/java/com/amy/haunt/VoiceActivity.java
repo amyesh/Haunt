@@ -26,6 +26,7 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -48,6 +49,7 @@ import com.twilio.voice.RegistrationListener;
 import com.twilio.voice.Voice;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class VoiceActivity extends AppCompatActivity {
 
@@ -99,6 +101,12 @@ public class VoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice);
+        Objects.requireNonNull(getSupportActionBar()).setElevation(5);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("");
+        actionBar.setLogo(R.drawable.haunt_blk_smallish);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         if (HauntApi.getInstance() != null) {
             currentUserId = HauntApi.getInstance().getUserId();
