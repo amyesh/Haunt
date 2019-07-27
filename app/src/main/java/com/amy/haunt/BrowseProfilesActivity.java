@@ -3,7 +3,6 @@ package com.amy.haunt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +18,7 @@ import com.amy.haunt.ui.UserRecyclerAdapter;
 import com.amy.haunt.util.HauntApi;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -74,43 +74,25 @@ public class BrowseProfilesActivity extends AppCompatActivity {
             preference = HauntApi.getInstance().getPreference();
             currentUserGenders = HauntApi.getInstance().getGenders();
         }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.action_browse:
-                if (user != null && firebaseAuth != null) {
-                    startActivity(new Intent(BrowseProfilesActivity.this,
-                            BrowseProfilesActivity.class));
-//                    finish();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.nav_view);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_browse:
+                        break;
+                    case R.id.action_matches:
+                        startActivity(new Intent(BrowseProfilesActivity.this, ViewMatchesActivity.class));
+                        break;
+                    case R.id.action_signout:
+                        Intent c = new Intent(BrowseProfilesActivity.this, LoginActivity.class);
+                        startActivity(c);
+                        break;
                 }
-                break;
-            case R.id.action_matches:
-                if (user != null && firebaseAuth != null) {
-                    startActivity(new Intent(BrowseProfilesActivity.this,
-                            ViewMatchesActivity.class));
-//                    finish();
-                }
-                break;
-            case R.id.action_signout:
-                if (user != null && firebaseAuth != null) {
-                    firebaseAuth.signOut();
-
-                    startActivity(new Intent(BrowseProfilesActivity.this,
-                            LoginActivity.class));
-//                    finish();
-                }
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+                return false;
+            }
+        });
     }
 
 

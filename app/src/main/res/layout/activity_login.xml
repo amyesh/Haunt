@@ -8,6 +8,7 @@
     android:background="@drawable/bg_gradient"
     android:padding="16dp"
     android:layout_height="match_parent"
+    android:id="@+id/login"
     tools:context=".LoginActivity">
 
     <ProgressBar
