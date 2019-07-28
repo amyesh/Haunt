@@ -29,7 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
             android:text="@string/intersted"
             android:textSize="17sp" />
 
@@ -49,29 +48,20 @@
                     android:layout_marginRight="20dp"
                     android:layout_height="wrap_content"
                     android:text="@string/men"
-                    android:textStyle="italic"
-                    android:fontFamily="monospace"
                     android:textSize="16sp"
-                    android:textColor="#797979"
                     android:onClick="onRadioPrefButtonClicked"/>
                 <RadioButton android:id="@+id/women"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:text="@string/women"
-                    android:textStyle="italic"
-                    android:fontFamily="monospace"
                     android:textSize="16sp"
-                    android:textColor="#797979"
                     android:onClick="onRadioPrefButtonClicked"/>
                 <RadioButton android:id="@+id/everyone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/everyone"
-                    android:textStyle="italic"
-                    android:fontFamily="monospace"
                     android:textSize="16sp"
-                    android:textColor="#797979"
                     android:onClick="onRadioPrefButtonClicked"/>
             </RadioGroup>
         </RelativeLayout>
@@ -83,7 +73,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
             android:text="@string/next_text"
             android:background="@drawable/basic_button"
             android:textColor="@android:color/white"

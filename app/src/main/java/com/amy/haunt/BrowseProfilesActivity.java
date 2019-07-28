@@ -61,7 +61,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_profiles);
-        Objects.requireNonNull(getSupportActionBar()).setElevation(5);
+        Objects.requireNonNull(getSupportActionBar()).setElevation(3);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("");
         actionBar.setLogo(R.drawable.haunt_blk_smallish);

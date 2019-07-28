@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/mid_blue</item>
         <item name="android:dialogTheme">@style/SpinnerDatePickerDialogTheme</item>
         <item name="android:datePickerStyle">@style/DatePickerStyle</item>
+        <item name="android:fontFamily">@font/apercu_regular</item>
+        <item name="editTextColor">@android:color/black</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">17sp</item>
     </style>
     <style name="SpinnerDatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:datePickerStyle">@style/DatePickerStyle</item>

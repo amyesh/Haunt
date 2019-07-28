@@ -28,8 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:textSize="17sp"
-            android:fontFamily="monospace"
             android:text="@string/about_me"
             android:maxLines="5" />
 
@@ -38,7 +36,6 @@
             android:layout_width="match_parent"
             android:layout_height="213dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
             android:scrollHorizontally="false"
             android:inputType="textCapSentences|textMultiLine"
             android:maxLines="5" />
@@ -48,7 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
             android:text="@string/next_text"
             android:background="@drawable/basic_button"
             android:textColor="@android:color/white"

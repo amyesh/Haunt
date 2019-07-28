@@ -29,7 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
             android:text="@string/have_kids"
             android:textSize="17sp" />
 
@@ -50,9 +49,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:onClick="onRadioKidsButtonClicked"/>
                 <RadioButton android:id="@+id/kids_no"
                     android:layout_width="wrap_content"
@@ -60,18 +56,12 @@
                     android:layout_marginEnd="20dp"
                     android:text="@string/no"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:onClick="onRadioKidsButtonClicked"/>
                 <RadioButton android:id="@+id/kids_prefer_not"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/prefer_not"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:onClick="onRadioKidsButtonClicked"/>
             </RadioGroup>
         </RelativeLayout>
@@ -81,8 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
-            android:textSize="17sp"
             android:text="@string/do_you_drink" />
 
         <RelativeLayout
@@ -102,17 +90,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:onClick="onRadioDrinkButtonClicked"/>
                 <RadioButton android:id="@+id/radio_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:layout_marginEnd="20dp"
                     android:text="@string/no"
                     android:onClick="onRadioDrinkButtonClicked"/>
@@ -120,9 +102,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:text="@string/sometimes"
                     android:onClick="onRadioDrinkButtonClicked"/>
             </RadioGroup>
@@ -133,8 +112,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
-            android:textSize="17sp"
             android:text="@string/do_you_smoke" />
 
         <RelativeLayout
@@ -154,17 +131,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="@color/pale_grey"
                     android:onClick="onRadioSmokeButtonClicked"/>
                 <RadioButton android:id="@+id/smoke_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:layout_marginEnd="20dp"
                     android:text="@string/no"
                     android:onClick="onRadioSmokeButtonClicked"/>
@@ -172,9 +143,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:text="@string/sometimes"
                     android:onClick="onRadioSmokeButtonClicked"/>
             </RadioGroup>
@@ -185,8 +153,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
-            android:textSize="17sp"
             android:text="@string/do_you_do_drugs" />
 
         <RelativeLayout
@@ -206,17 +172,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:onClick="onRadioDrugsButtonClicked"/>
                 <RadioButton android:id="@+id/drugs_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:layout_marginEnd="20dp"
                     android:text="@string/no"
                     android:onClick="onRadioDrugsButtonClicked"/>
@@ -224,9 +184,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:fontFamily="monospace"
-                    android:textSize="16sp"
-                    android:textColor="#797979"
                     android:text="@string/sometimes"
                     android:onClick="onRadioDrugsButtonClicked"/>
             </RadioGroup>
@@ -237,7 +194,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
             android:text="@string/next_text"
             android:background="@drawable/basic_button"
             android:textColor="@android:color/white"

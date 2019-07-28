@@ -28,7 +28,6 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="monospace"
             android:hint="@string/email_hint"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -39,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="monospace"
             android:hint="@string/password_hint"
             android:inputType="textPassword"
             android:maxLines="1"
@@ -52,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@drawable/button_brdr_selector"
-            android:fontFamily="monospace"
             android:text="@string/login_text"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -61,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:fontFamily="monospace"
             android:gravity="center_horizontal"
             android:text="@string/or_text"
             android:textSize="12sp" />
@@ -71,7 +67,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_brdr_selector"
-            android:fontFamily="monospace"
             android:text="@string/create_text"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
