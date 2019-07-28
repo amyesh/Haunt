@@ -69,14 +69,63 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/browse_users_sign"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/astro_signs"
-            android:textStyle="bold" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:paddingStart="10dp"
+                android:paddingBottom="2dp"
+                android:src="@drawable/ic_adjust_black_24dp"
+                android:layout_gravity="bottom" />
+
+            <TextView
+                android:id="@+id/browse_users_sun_sign"
+                android:paddingStart="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/astro_sun"
+                android:layout_gravity="bottom"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_moon_black_24dp"
+                android:paddingBottom="2dp"
+                android:layout_gravity="bottom"
+                android:paddingStart="13dp"/>
+
+            <TextView
+                android:id="@+id/browse_users_moon_sign"
+                android:paddingStart="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/astro_moon"
+                android:layout_gravity="bottom"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_rising_black_24dp"
+                android:layout_gravity="bottom"
+                android:paddingStart="13dp"/>
+
+            <TextView
+                android:id="@+id/browse_users_rising_sign"
+                android:paddingStart="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/astro_rising"
+                android:layout_gravity="bottom"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/browse_users_compat"

@@ -77,4 +77,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="astro_rising">Libra</string>
+    <string name="astro_moon">Leo</string>
+    <string name="astro_sun">Cancer</string>
 </resources>

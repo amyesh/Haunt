@@ -38,7 +38,9 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     private int currentPosition;
     private ArrayList<String> likes;
     private String userHeading;
-    private String zodiac_signs;
+    private String sun_sign;
+    private String moon_sign;
+    private String rising_sign;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("Users");
@@ -62,11 +64,15 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
         UserProfile userProfile = userProfileList.get(position);
         userHeading = userProfile.getFirstName() + ", " + userProfile.getAge();
-        zodiac_signs = userProfile.getZodiac() + " / " + randomSignFromArray() + " / " + randomSignFromArray();
+        sun_sign = userProfile.getZodiac();
+        moon_sign = randomSignFromArray();
+        rising_sign = randomSignFromArray();
         String imageUrl;
         viewHolder.blurb.setText(userProfile.getAboutMe());
         viewHolder.name.setText(userHeading);
-        viewHolder.astro_sign.setText(zodiac_signs);
+        viewHolder.sunSign.setText(sun_sign);
+        viewHolder.moonSign.setText(moon_sign);
+        viewHolder.risingSign.setText(rising_sign);
         imageUrl = userProfile.getProfilePhotoUrl();
 
         if (HauntApi.getInstance() != null) {
@@ -108,7 +114,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView name,
-                astro_sign, blurb;
+                sunSign, blurb,
+                moonSign, risingSign;
 //        compatibility;
 
         public ImageView image;
@@ -121,7 +128,9 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
 //            matchImage = itemView.findViewById(R.id.match_toast_image);
             name = itemView.findViewById(R.id.browse_users_name);
-            astro_sign = itemView.findViewById(R.id.browse_users_sign);
+            sunSign = itemView.findViewById(R.id.browse_users_sun_sign);
+            moonSign = itemView.findViewById(R.id.browse_users_moon_sign);
+            risingSign = itemView.findViewById(R.id.browse_users_rising_sign);
             image = itemView.findViewById(R.id.browse_users_image);
             likeButton = itemView.findViewById(R.id.like_user);
             blurb = itemView.findViewById(R.id.browse_users_blurb);
