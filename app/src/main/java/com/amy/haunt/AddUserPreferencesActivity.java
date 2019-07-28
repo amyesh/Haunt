@@ -94,15 +94,18 @@ public class AddUserPreferencesActivity extends AppCompatActivity implements Vie
         switch(view.getId()) {
             case R.id.men:
                 if (checked)
-                    preference = "Male";
+                    ((RadioButton) view).setChecked(true);
+                preference = "Male";
                     break;
             case R.id.women:
                 if (checked)
-                    preference = "Female";
+                    ((RadioButton) view).setChecked(true);
+                preference = "Female";
                 break;
             case R.id.everyone:
                 if (checked)
-                    preference = "Everyone";
+                    ((RadioButton) view).setChecked(true);
+                preference = "Everyone";
                 break;
         }
     }

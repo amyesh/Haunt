@@ -29,13 +29,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/have_kids"
-            android:textSize="17sp" />
+            android:fontFamily="@font/apercu_bold_italic"
+            android:textSize="20sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="50dp"
             android:layout_marginStart="20dp">
 
             <RadioGroup
@@ -44,24 +46,43 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton android:id="@+id/kids_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_width="80dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/radio_button"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="12dp"
+                    android:button="@null"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="16sp"
                     android:text="@string/yes"
-                    android:textStyle="italic"
                     android:onClick="onRadioKidsButtonClicked"/>
                 <RadioButton android:id="@+id/kids_no"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/radio_button"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="12dp"
+                    android:button="@null"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="16sp"
                     android:text="@string/no"
-                    android:textStyle="italic"
                     android:onClick="onRadioKidsButtonClicked"/>
                 <RadioButton android:id="@+id/kids_prefer_not"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/radio_button"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="12dp"
+                    android:button="@null"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="16sp"
                     android:text="@string/prefer_not"
-                    android:textStyle="italic"
                     android:onClick="onRadioKidsButtonClicked"/>
             </RadioGroup>
         </RelativeLayout>
@@ -71,12 +92,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/do_you_drink" />
+            android:text="@string/do_you_drink"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/apercu_bold_italic"
+            android:textSize="20sp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="50dp"
             android:layout_marginStart="20dp">
 
             <RadioGroup
@@ -85,23 +109,42 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton android:id="@+id/radio_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_width="80dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/radio_button"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="12dp"
+                    android:button="@null"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="16sp"
                     android:text="@string/yes"
-                    android:textStyle="italic"
                     android:onClick="onRadioDrinkButtonClicked"/>
                 <RadioButton android:id="@+id/radio_no"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:textStyle="italic"
-                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/radio_button"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="12dp"
+                    android:button="@null"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="16sp"
                     android:text="@string/no"
                     android:onClick="onRadioDrinkButtonClicked"/>
                 <RadioButton android:id="@+id/radio_prefer_not"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:textStyle="italic"
+                    android:background="@drawable/radio_button"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="12dp"
+                    android:button="@null"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="16sp"
                     android:text="@string/sometimes"
                     android:onClick="onRadioDrinkButtonClicked"/>
             </RadioGroup>
@@ -112,12 +155,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/do_you_smoke" />
+            android:text="@string/do_you_smoke"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/apercu_bold_italic"
+            android:textSize="20sp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="50dp"
             android:layout_marginStart="20dp">
 
             <RadioGroup
@@ -126,66 +172,44 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton android:id="@+id/smoke_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_width="80dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/radio_button"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="12dp"
+                    android:button="@null"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="16sp"
                     android:text="@string/yes"
-                    android:textStyle="italic"
                     android:onClick="onRadioSmokeButtonClicked"/>
                 <RadioButton android:id="@+id/smoke_no"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:textStyle="italic"
-                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/radio_button"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="12dp"
+                    android:button="@null"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="16sp"
                     android:text="@string/no"
                     android:onClick="onRadioSmokeButtonClicked"/>
                 <RadioButton android:id="@+id/smoke_prefer_not"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:textStyle="italic"
+                    android:background="@drawable/radio_button"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="12dp"
+                    android:button="@null"
+                    android:textColor="@drawable/button_text_color"
+                    android:textSize="16sp"
                     android:text="@string/sometimes"
                     android:onClick="onRadioSmokeButtonClicked"/>
-            </RadioGroup>
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/opt_drugs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/do_you_do_drugs" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
-            android:layout_marginStart="20dp">
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/drugs_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/yes"
-                    android:textStyle="italic"
-                    android:onClick="onRadioDrugsButtonClicked"/>
-                <RadioButton android:id="@+id/drugs_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="italic"
-                    android:layout_marginEnd="20dp"
-                    android:text="@string/no"
-                    android:onClick="onRadioDrugsButtonClicked"/>
-                <RadioButton android:id="@+id/drugs_prefer_not"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="italic"
-                    android:text="@string/sometimes"
-                    android:onClick="onRadioDrugsButtonClicked"/>
             </RadioGroup>
         </RelativeLayout>
 

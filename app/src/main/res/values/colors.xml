@@ -6,6 +6,8 @@
     <color name="dark_blue">#3747A3</color>
     <color name="mid_blue">#475DDB</color>
     <color name="pale_blue">#9AA4DF</color>
-    <color name="pale_grey">#797979</color>
+    <color name="pale_grey">#E2E1E1</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="grey">#EB42424D</color>
 </resources>

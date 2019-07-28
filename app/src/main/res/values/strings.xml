@@ -13,7 +13,7 @@
     <string name="birthday_hint">Birthday</string>
     <string name="first_name_hint">First name</string>
     <string name="last_name_hint">Last name</string>
-    <string name="browse_no_users">Check back later for more potential matches!</string>
+    <string name="browse_no_users">You\'re new here! Check back later for more potential matches.</string>
     <string name="astro_signs">Cancer / Leo / Libra</string>
     <string name="users_compat">Compatibility: X</string>
     <string name="users_blurb">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna alquam erat volutpat.</string>
@@ -28,9 +28,8 @@
     <string name="match_name">Name</string>
     <string name="birthday">select birthday</string>
     <string name="callee">client identity or phone number</string>
-    <!--<string name="callHint">Dial a client name or phone number. Leaving the field empty results in an automated response.</string>-->
     <string name="turn_speaker_on">Speaker ON</string>
-    <string name="about_me">Surprise me:</string>
+    <string name="about_me">Tell me about yourself:</string>
     <string name="have_kids">Do you have kids?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>

@@ -30,12 +30,14 @@
             android:hint="@string/email_hint"
             android:inputType="textEmailAddress"
             android:maxLines="1"
+            android:theme="@style/LoginEditTextTheme"
             android:textColor="@android:color/white" />
 
         <EditText
             android:id="@+id/password_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/LoginEditTextTheme"
             android:layout_marginTop="16dp"
             android:hint="@string/password_hint"
             android:inputType="textPassword"
