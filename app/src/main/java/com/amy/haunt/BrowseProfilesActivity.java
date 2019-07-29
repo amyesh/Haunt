@@ -88,6 +88,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                     case R.id.action_signout:
                         Intent c = new Intent(BrowseProfilesActivity.this, LoginActivity.class);
                         startActivity(c);
+                        finish();
                         break;
                 }
                 return false;

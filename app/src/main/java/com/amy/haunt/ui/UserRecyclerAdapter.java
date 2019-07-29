@@ -143,7 +143,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             image = itemView.findViewById(R.id.browse_users_image);
             likeButton = itemView.findViewById(R.id.like_user);
             blurb = itemView.findViewById(R.id.browse_users_blurb);
-            imageToast = itemView.findViewById(R.id.match_toast_image);
 
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -161,25 +160,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                 }
             });
         }
-
-//        public class MatchesDialogFragment extends DialogFragment {
-//            @Override
-//            public Dialog onCreateDialog(Bundle savedInstanceState) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                builder.setTitle("It's a match!");
-//                builder.setMessage("Would you like to view your matches?")
-//                        .setPositiveButton("Yes!", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                startActivity(new Intent(context, ViewMatchesActivity.class));
-//                            }
-//                        })
-//                        .setNegativeButton("No thanks.", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                            }
-//                        });
-//                return builder.create();
-//            }
-//        }
 
         private void saveUserLike(final String likedUser) {
             collectionReference.document(currentUserId)
@@ -206,7 +186,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                         if (documentSnapshot.exists()) {
                             ArrayList<String> likes = (ArrayList<String>) documentSnapshot.get("likes");
                             String imageUrl = (String) documentSnapshot.get("profilePhotoUrl");
-//                            String matchUrl = (String) documentSnapshot.get("profilePhotoUrl");
                             boolean contains = likes.contains(currentUserId);
                             if (contains) {
                                 createMatch(likedUser, currentUserId);
@@ -226,13 +205,11 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Log.d("createMatch", "onSuccess: added " + likedUser);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d("createMatch", "onFailure: " + e.getMessage());
                         }
                     });
             collectionReference.document(likedUser)
@@ -240,13 +217,11 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Log.d("createMatch", "onSuccess: added " + currentUserId);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d("createMatch", "onFailure: " + e.getMessage());
                         }
                     });
         }
@@ -262,7 +237,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     }
 
     private void showToast(String imageUrl) {
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         View layout = inflater.inflate( R.layout.match_toast, null );
         imageToast = layout.findViewById(R.id.match_toast_image);
 
