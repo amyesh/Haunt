@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+
 public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapter.ViewHolder> {
 
     private Context context;
@@ -37,10 +39,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     private String currentUserId;
     private int currentPosition;
     private ArrayList<String> likes;
-    private String userHeading;
-    private String sun_sign;
-    private String moon_sign;
-    private String rising_sign;
+    private ImageView imageToast;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("Users");
@@ -63,16 +62,26 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     public void onBindViewHolder(@NonNull UserRecyclerAdapter.ViewHolder viewHolder, int position) {
 
         UserProfile userProfile = userProfileList.get(position);
-        userHeading = userProfile.getFirstName() + ", " + userProfile.getAge();
-        sun_sign = userProfile.getZodiac();
-        moon_sign = randomSignFromArray();
-        rising_sign = randomSignFromArray();
+        String userHeading = userProfile.getFirstName();
+        String sun_sign = userProfile.getZodiac();
+        String moon_sign = randomSignFromArray();
+        String rising_sign = randomSignFromArray();
+        String age = userProfile.getAge();
+        String kids = userProfile.getKids();
+        String drinking = userProfile.getDrinking();
+        String smoking = userProfile.getSmoking();
+        String height = userProfile.getHeight();
         String imageUrl;
         viewHolder.blurb.setText(userProfile.getAboutMe());
         viewHolder.name.setText(userHeading);
         viewHolder.sunSign.setText(sun_sign);
         viewHolder.moonSign.setText(moon_sign);
         viewHolder.risingSign.setText(rising_sign);
+        viewHolder.smoking.setText(smoking);
+        viewHolder.drinking.setText(drinking);
+        viewHolder.kids.setText(kids);
+        viewHolder.age.setText(age);
+        viewHolder.height.setText(height);
         imageUrl = userProfile.getProfilePhotoUrl();
 
         if (HauntApi.getInstance() != null) {
@@ -86,14 +95,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             viewHolder.likeButton.setImageResource(R.drawable.like_button_large);
             Log.d("wtf", "likebutton");
         }
-
-//        Picasso.get()
-//                .load(imageUrl)
-//                .placeholder(R.drawable.image_loading_bg)
-//                .resize(600,1000)
-//                .centerInside()
-//                .into(viewHolder.matchImage);
-
 
         Picasso.get()
                 .load(imageUrl)
@@ -115,7 +116,9 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
         public TextView name,
                 sunSign, blurb,
-                moonSign, risingSign;
+                moonSign, risingSign,
+                age, height, kids,
+                drinking, smoking;
 //        compatibility;
 
         public ImageView image;
@@ -126,7 +129,13 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             super(itemView);
             context = ctx;
 
+//            compatibility = itemView.findViewById(R.id.browse_users_compat);
 //            matchImage = itemView.findViewById(R.id.match_toast_image);
+            age = itemView.findViewById(R.id.browse_users_age);
+            height = itemView.findViewById(R.id.browse_users_height);
+            kids = itemView.findViewById(R.id.browse_users_kids);
+            drinking = itemView.findViewById(R.id.browse_users_drink);
+            smoking = itemView.findViewById(R.id.browse_users_smoke);
             name = itemView.findViewById(R.id.browse_users_name);
             sunSign = itemView.findViewById(R.id.browse_users_sun_sign);
             moonSign = itemView.findViewById(R.id.browse_users_moon_sign);
@@ -134,7 +143,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             image = itemView.findViewById(R.id.browse_users_image);
             likeButton = itemView.findViewById(R.id.like_user);
             blurb = itemView.findViewById(R.id.browse_users_blurb);
-//            compatibility = itemView.findViewById(R.id.browse_users_compat);
+            imageToast = itemView.findViewById(R.id.match_toast_image);
+
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -195,15 +205,12 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                         DocumentSnapshot documentSnapshot = task.getResult();
                         if (documentSnapshot.exists()) {
                             ArrayList<String> likes = (ArrayList<String>) documentSnapshot.get("likes");
+                            String imageUrl = (String) documentSnapshot.get("profilePhotoUrl");
 //                            String matchUrl = (String) documentSnapshot.get("profilePhotoUrl");
                             boolean contains = likes.contains(currentUserId);
                             if (contains) {
                                 createMatch(likedUser, currentUserId);
-//                                Toast.makeText(context,
-//                                        "It's a match!",
-//                                        Toast.LENGTH_LONG)
-//                                        .show();
-                                showToast();
+                                showToast(imageUrl);
                             }
                         }
                     } else {
@@ -254,9 +261,18 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         return arr[randomNumber];
     }
 
-    private void showToast() {
+    private void showToast(String imageUrl) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View layout = inflater.inflate( R.layout.match_toast, null );
+        imageToast = layout.findViewById(R.id.match_toast_image);
+
+        Picasso.get()
+                .load(imageUrl)
+                .placeholder(R.drawable.image_loading_bg)
+                .resize(1000,1000)
+                .transform(new CropCircleTransformation())
+                .centerInside()
+                .into(imageToast);
 
         Toast toast = new Toast(context);
         toast.setGravity(Gravity.CENTER, 0, 0);

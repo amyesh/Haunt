@@ -27,7 +27,9 @@ import java.util.Map;
 public class OptionalInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button saveInfoButton;
-    private String preference;
+    private String kids;
+    private String drinking;
+    private String smoking;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser currentUser;
@@ -49,7 +51,7 @@ public class OptionalInfoActivity extends AppCompatActivity implements View.OnCl
         actionBar.setDisplayShowHomeEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.preferences_progress);
+        progressBar = findViewById(R.id.optional_progress);
 
         saveInfoButton = findViewById(R.id.opt_button);
         saveInfoButton.setOnClickListener(this);
@@ -89,14 +91,18 @@ public class OptionalInfoActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-                if (preference != null) {
-            Map<String, Object> preferenceMap = new HashMap<>();
-            preferenceMap.put("preference", preference);
+        if (kids != null) {
+            Map<String, Object> optionalMap = new HashMap<>();
+            optionalMap.put("kids", kids);
+            optionalMap.put("drinking", drinking);
+            optionalMap.put("smoking", smoking);
             HauntApi hauntApi = HauntApi.getInstance();
-            hauntApi.setPreference(preference);
-            progressBar.setVisibility(View.VISIBLE);
+            hauntApi.setKids(kids);
+            hauntApi.setDrinking(drinking);
+            hauntApi.setSmoking(smoking);
+                    progressBar.setVisibility(View.VISIBLE);
             collectionReference.document(currentUserId)
-                    .set(preferenceMap, SetOptions.merge())
+                    .set(optionalMap, SetOptions.merge())
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -122,20 +128,20 @@ public class OptionalInfoActivity extends AppCompatActivity implements View.OnCl
         boolean checked = ((RadioButton) view).isChecked();
 
         switch(view.getId()) {
-            case R.id.men:
+            case R.id.kids_yes:
                 if (checked)
                     ((RadioButton) view).setChecked(true);
-                preference = "Male";
+                kids = "Yes";
                 break;
-            case R.id.women:
+            case R.id.kids_no:
                 if (checked)
                     ((RadioButton) view).setChecked(true);
-                preference = "Female";
+                kids = "No";
                 break;
-            case R.id.everyone:
+            case R.id.kids_prefer_not:
                 if (checked)
                     ((RadioButton) view).setChecked(true);
-                preference = "Everyone";
+                kids = "N/A";
                 break;
         }
     }
@@ -144,20 +150,20 @@ public class OptionalInfoActivity extends AppCompatActivity implements View.OnCl
         boolean checked = ((RadioButton) view).isChecked();
 
         switch(view.getId()) {
-            case R.id.men:
+            case R.id.radio_yes:
                 if (checked)
                     ((RadioButton) view).setChecked(true);
-                preference = "Male";
+                drinking = "Yes";
                 break;
-            case R.id.women:
+            case R.id.radio_no:
                 if (checked)
                     ((RadioButton) view).setChecked(true);
-                preference = "Female";
+                drinking = "No";
                 break;
-            case R.id.everyone:
+            case R.id.radio_prefer_not:
                 if (checked)
                     ((RadioButton) view).setChecked(true);
-                preference = "Everyone";
+                drinking = "Sometimes";
                 break;
         }
     }
@@ -166,20 +172,20 @@ public class OptionalInfoActivity extends AppCompatActivity implements View.OnCl
         boolean checked = ((RadioButton) view).isChecked();
 
         switch(view.getId()) {
-            case R.id.men:
+            case R.id.smoke_yes:
                 if (checked)
                     ((RadioButton) view).setChecked(true);
-                preference = "Male";
+                smoking = "Yes";
                 break;
-            case R.id.women:
+            case R.id.smoke_no:
                 if (checked)
                     ((RadioButton) view).setChecked(true);
-                preference = "Female";
+                smoking = "No";
                 break;
-            case R.id.everyone:
+            case R.id.smoke_prefer_not:
                 if (checked)
                     ((RadioButton) view).setChecked(true);
-                preference = "Everyone";
+                smoking = "Sometimes";
                 break;
         }
     }

@@ -10,8 +10,35 @@ public class HauntApi extends Application {
     private String preference;
     private ArrayList<String> genders;
     private ArrayList<String> likes;
+    private String kids;
+    private String smoking;
+    private String drinking;
     private static HauntApi instance;
     private int position;
+
+    public String getKids() {
+        return kids;
+    }
+
+    public void setKids(String kids) {
+        this.kids = kids;
+    }
+
+    public String getSmoking() {
+        return smoking;
+    }
+
+    public void setSmoking(String smoking) {
+        this.smoking = smoking;
+    }
+
+    public String getDrinking() {
+        return drinking;
+    }
+
+    public void setDrinking(String drinking) {
+        this.drinking = drinking;
+    }
 
     public int getPosition() {
         return position;

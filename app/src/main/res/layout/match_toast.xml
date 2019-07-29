@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/match_toast"
     android:orientation="vertical"
+    android:layout_gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/toast"
@@ -11,28 +12,29 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_favorite_pink_24dp"
-        android:layout_marginEnd="10dp"/>
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/ic_favorite_pink_24dp"-->
+        <!--android:layout_marginEnd="10dp"/>-->
 
     <TextView
         android:id="@+id/match_toast_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/match_toast"
+        android:gravity="center"
         android:textStyle="bold"
         android:textSize="20sp"/>
 
+        <ImageView
+            android:id="@+id/match_toast_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            android:onClick="onClickMatch"/>
+
     </LinearLayout>
-
-    <!--<ImageView-->
-        <!--android:id="@+id/match_toast_image"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_margin="20dp"/>-->
-
 </LinearLayout>

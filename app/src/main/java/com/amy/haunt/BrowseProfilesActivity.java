@@ -2,7 +2,6 @@ package com.amy.haunt;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -45,17 +44,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
 
     private CollectionReference collectionReference = db.collection("Users");
     private TextView noUsersToBrowse;
-    private ArrayList<String> genders;
 //    private ProgressBar progressBar;
-
-//    private void setToolBar(){
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        toolbar.setBackgroundColor(getResources().getColor(colorActionBar));
-//        toolbar.setLogo(R.drawable.logoactionbar);
-//
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +68,10 @@ public class BrowseProfilesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         if (HauntApi.getInstance() != null) {
-            currentUserId = HauntApi.getInstance().getUserId();
-            preference = HauntApi.getInstance().getPreference();
+            HauntApi hauntApi = HauntApi.getInstance();
+            currentUserId = hauntApi.getUserId();
+            preference = hauntApi.getPreference();
+
             currentUserGenders = HauntApi.getInstance().getGenders();
         }
 
@@ -125,13 +116,13 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                                     UserProfile user = users.toObject(UserProfile.class);
                                     String userPreference = user.getPreference();
 
-                                    if (!Objects.equals(userPreference, "Everyone")) { // if userPref does not equal Everyone
-                                        boolean contains = currentUserGenders.contains(userPreference); // if currentUserGenders contains user pref (M or F)
-                                        if (contains && !Objects.equals(user.getUserId(), currentUserId)) { // if it does contain M & isn't the same user, add to list
+                                    if (!Objects.equals(userPreference, "Everyone")) {
+                                        boolean contains = currentUserGenders.contains(userPreference);
+                                        if (contains && !Objects.equals(user.getUserId(), currentUserId)) {
                                             usersList.add(user);
                                         }
                                     } else {
-                                        if (!Objects.equals(user.getUserId(), currentUserId)) { // else if their preference is everyone it isn't the current user
+                                        if (!Objects.equals(user.getUserId(), currentUserId)) {
                                             usersList.add(user);
                                         }
                                     }
@@ -174,14 +165,10 @@ public class BrowseProfilesActivity extends AppCompatActivity {
 
                                     if (!Objects.equals(userPreference, "Everyone")) {
                                         if (contains && !Objects.equals(user.getUserId(), currentUserId)) {
-                                            Log.d("wtf", "onSuccess: Everyone");
-
                                             usersList.add(user);
                                         }
                                     } else {
                                         if (!Objects.equals(user.getUserId(), currentUserId)) {
-                                            Log.d("wtf", "onSuccess: prefers Male");
-
                                             usersList.add(user);
                                         }
                                     }
@@ -193,7 +180,6 @@ public class BrowseProfilesActivity extends AppCompatActivity {
 //                                if (HauntApi.getInstance().getPosition() != 0) {
                                 recyclerView.scrollToPosition(HauntApi.getInstance().getPosition());
 //                                }
-                                Log.d("wtf", "onSuccess: " + usersList);
                             } else {
                                 noUsersToBrowse.setVisibility(View.VISIBLE);
                             }

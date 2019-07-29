@@ -79,4 +79,9 @@
     <string name="astro_rising">Libra</string>
     <string name="astro_moon">Leo</string>
     <string name="astro_sun">Cancer</string>
+    <string name="age">29</string>
+    <string name="height">5\'10</string>
+    <string name="kids">Yes</string>
+    <string name="drinking">Sometimes</string>
+    <string name="smoking">No</string>
 </resources>
