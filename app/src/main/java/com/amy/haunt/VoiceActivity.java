@@ -54,10 +54,10 @@ import java.util.Objects;
 public class VoiceActivity extends AppCompatActivity {
 
     private static final String TAG = "VoiceActivity";
-    private static String identity = "Toots";
+    private static String identity = "Kim";
 
 
-    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://9fb3e2b6.ngrok.io/accessToken";
+    private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://8fa45231.ngrok.io/accessToken";
 
     private static final int MIC_PERMISSION_REQUEST_CODE = 1;
     private static final int SNACKBAR_DURATION = 4000;
@@ -171,6 +171,9 @@ public class VoiceActivity extends AppCompatActivity {
         } else {
             retrieveAccessToken();
         }
+
+        alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this);
+        alertDialog.show();
     }
 
     @Override
