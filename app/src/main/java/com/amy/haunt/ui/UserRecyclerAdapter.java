@@ -86,14 +86,12 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
         if (HauntApi.getInstance() != null) {
             likes = HauntApi.getInstance().getLikes();
-            Log.d("logic", "onBindViewHolder: there is an instance of Haunt API" + likes);
         }
         boolean contains = likes.contains(userProfile.getUserId());
         if (contains) {
             viewHolder.likeButton.setImageResource(R.drawable.liked_button_large);
         } else {
             viewHolder.likeButton.setImageResource(R.drawable.like_button_large);
-            Log.d("wtf", "likebutton");
         }
 
         Picasso.get()
@@ -153,9 +151,9 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
                     if (HauntApi.getInstance() != null) {
                         currentUserId = HauntApi.getInstance().getUserId();
+                        //TODO: remove this?
                         HauntApi.getInstance().setPosition(position);
                     }
-
                     saveUserLike(likedUserId);
                 }
             });
@@ -257,4 +255,3 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         toast.show();
     }
 }
-

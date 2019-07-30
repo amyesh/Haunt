@@ -285,7 +285,8 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressBar.setVisibility(View.INVISIBLE);
 
-                            filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            filepath.getDownloadUrl()
+                                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
 
@@ -303,19 +304,17 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
                                     userProfile.setZodiac(zodiac);
                                     userProfile.setAge(age);
 
+                                    HauntApi hauntApi = HauntApi.getInstance();
+                                    hauntApi.setUserId(currentUserId);
+                                    hauntApi.setLikes(likes);
+
                                     collectionReference.document(currentUserId)
                                             .set(userProfile, SetOptions.merge())
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     progressBar.setVisibility(View.INVISIBLE);
-
-                                                    HauntApi hauntApi = HauntApi.getInstance();
-                                                    hauntApi.setUserId(currentUserId);
-                                                    hauntApi.setLikes(likes);
-
                                                     startActivity(new Intent(CreateUserProfileActivity.this, AboutMeActivity.class));
-                                                    finish();
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {

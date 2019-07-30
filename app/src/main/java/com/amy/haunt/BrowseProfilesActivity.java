@@ -71,7 +71,6 @@ public class BrowseProfilesActivity extends AppCompatActivity {
             HauntApi hauntApi = HauntApi.getInstance();
             currentUserId = hauntApi.getUserId();
             preference = hauntApi.getPreference();
-
             currentUserGenders = HauntApi.getInstance().getGenders();
         }
 

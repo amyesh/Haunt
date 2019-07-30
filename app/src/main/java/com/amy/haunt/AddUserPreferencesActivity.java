@@ -18,11 +18,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public class AddUserPreferencesActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -123,9 +130,6 @@ public class AddUserPreferencesActivity extends AppCompatActivity implements Vie
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Intent intent = new Intent(AddUserPreferencesActivity.this, BrowseProfilesActivity.class);
-                            startActivity(intent);
-                            finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -140,5 +144,32 @@ public class AddUserPreferencesActivity extends AppCompatActivity implements Vie
                     Toast.LENGTH_SHORT)
                     .show();
         }
+        collectionReference
+                .whereEqualTo("userId", currentUserId)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+
+                        }
+                        assert queryDocumentSnapshots != null;
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
+                                HauntApi hauntApi = HauntApi.getInstance();
+                                hauntApi.setUserEmail(snapshot.getString("userEmail"));
+                                hauntApi.setUserId(snapshot.getString("userId"));
+                                hauntApi.setPreference(snapshot.getString("preference"));
+                                ArrayList<String> genders = (ArrayList<String>) snapshot.get("genders");
+                                ArrayList<String> likes = (ArrayList<String>) snapshot.get("likes");
+                                hauntApi.setGenders(genders);
+                                hauntApi.setLikes(likes);
+
+                                Intent intent = new Intent(AddUserPreferencesActivity.this, BrowseProfilesActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    }
+                });
     }
 }
