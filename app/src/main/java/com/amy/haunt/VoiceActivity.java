@@ -172,8 +172,11 @@ public class VoiceActivity extends AppCompatActivity {
             retrieveAccessToken();
         }
 
-        alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this);
-        alertDialog.show();
+        Intent intent = getIntent();
+        if (intent.getAction() == null) {
+            alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this);
+            alertDialog.show();
+        }
     }
 
     @Override
@@ -461,8 +464,9 @@ public class VoiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPoolManager.playDisconnect();
-                resetUI();
                 disconnect();
+                Intent c = new Intent(VoiceActivity.this, ViewMatchesActivity.class);
+                startActivity(c);
             }
         };
     }
