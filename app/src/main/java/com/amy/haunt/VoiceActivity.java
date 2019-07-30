@@ -54,7 +54,7 @@ import java.util.Objects;
 public class VoiceActivity extends AppCompatActivity {
 
     private static final String TAG = "VoiceActivity";
-    private static String identity = "Kim";
+    private static String identity = "Chuck";
 
 
     private static final String TWILIO_ACCESS_TOKEN_SERVER_URL = "https://8fa45231.ngrok.io/accessToken";
@@ -93,6 +93,7 @@ public class VoiceActivity extends AppCompatActivity {
     private Call activeCall;
     private int activeCallNotificationId;
     private String currentUserId;
+    private String matchName;
 
     RegistrationListener registrationListener = registrationListener();
     Call.Listener callListener = callListener();
@@ -126,7 +127,7 @@ public class VoiceActivity extends AppCompatActivity {
         muteActionFab = findViewById(R.id.mute_action_fab);
         chronometer = findViewById(R.id.chronometer);
 
-        callActionFab.setOnClickListener(callActionFabClickListener());
+//        callActionFab.setOnClickListener(callActionFabClickListener());
         hangupActionFab.setOnClickListener(hangupActionFabClickListener());
         holdActionFab.setOnClickListener(holdActionFabClickListener());
         muteActionFab.setOnClickListener(muteActionFabClickListener());
@@ -173,8 +174,10 @@ public class VoiceActivity extends AppCompatActivity {
         }
 
         Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        matchName = extras.getString("MATCH");
         if (intent.getAction() == null) {
-            alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this);
+            alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this, matchName);
             alertDialog.show();
         }
     }
@@ -448,16 +451,16 @@ public class VoiceActivity extends AppCompatActivity {
         }
     }
 
-    private View.OnClickListener callActionFabClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Todo: alter this alertDialog to be recyler view data - intent?
-                alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this);
-                alertDialog.show();
-            }
-        };
-    }
+//    private View.OnClickListener callActionFabClickListener() {
+//        return new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //Todo: alter this alertDialog to be recyler view data - intent?
+//                alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this);
+//                alertDialog.show();
+//            }
+//        };
+//    }
 
     private View.OnClickListener hangupActionFabClickListener() {
         return new View.OnClickListener() {
@@ -639,7 +642,8 @@ public class VoiceActivity extends AppCompatActivity {
 
     public static AlertDialog createCallDialog(final DialogInterface.OnClickListener callClickListener,
                                                final DialogInterface.OnClickListener cancelClickListener,
-                                               final Context context) {
+                                               final Context context,
+                                               final String name) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         alertDialogBuilder.setIcon(R.drawable.ic_call_black_24dp);
@@ -651,7 +655,9 @@ public class VoiceActivity extends AppCompatActivity {
         LayoutInflater li = LayoutInflater.from(context);
         View dialogView = li.inflate(R.layout.dialog_call, null);
         final EditText contact = (EditText) dialogView.findViewById(R.id.contact);
-        contact.setHint(R.string.callee);
+        //TOdo: set text dynamically through intent?
+        contact.setText(name);
+//        contact.setHint(R.string.callee);
         alertDialogBuilder.setView(dialogView);
 
         return alertDialogBuilder.create();

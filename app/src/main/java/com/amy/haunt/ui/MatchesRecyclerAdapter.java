@@ -81,47 +81,34 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
 
             name = itemView.findViewById(R.id.match_name);
             image = itemView.findViewById(R.id.match_image);
-            viewProfileButton = itemView.findViewById(R.id.match_cardview);
+//            viewProfileButton = itemView.findViewById(R.id.match_cardview);
             callButton = itemView.findViewById(R.id.match_call);
-            viewProfileButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Todo: Add functionality to view user profile
-                    //Todo: Add ViewProfileActivity - reuse user_row view?
-//                    int position = getLayoutPosition();
-//
-//                    //creating an intent
-//                    Intent intent = new Intent(getApplicationContext(), ViewProfileActivity.class);
-//
-//                    //putting artist name and id to intent
-//
-//                    intent.putExtra(MATCH_USER_ID, userProfile.getUserId());
-//                    intent.putExtra(MATCH_NAME, userProfile.getUserName());
-//
-//                    //starting the activity with intent
-//                    startActivity(intent);
-                }
-            });
+//            viewProfileButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    //Todo: Add functionality to view user profile
+////                    int position = getLayoutPosition();
+////
+////                    //creating an intent
+////                    Intent intent = new Intent(getApplicationContext(), ViewProfileActivity.class);
+////
+////                    //putting artist name and id to intent
+////
+////                    intent.putExtra(MATCH_USER_ID, userProfile.getUserId());
+////                    intent.putExtra(MATCH_NAME, userProfile.getUserName());
+////
+////                    //starting the activity with intent
+////                    startActivity(intent);
+//                }
+//            });
 
             callButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Todo: Add functionality to call user
                     Intent makeCall = new Intent(ctx, VoiceActivity.class);
+                    makeCall.putExtra("MATCH", name.getText());
 
                     ctx.startActivity(makeCall);
-//                    int position = getLayoutPosition();
-//
-//                    //creating an intent
-//                    Intent intent = new Intent(getApplicationContext(), ViewProfileActivity.class);
-//
-//                    //putting artist name and id to intent
-//
-//                    intent.putExtra(MATCH_USER_ID, userProfile.getUserId());
-//                    intent.putExtra(MATCH_NAME, userProfile.getUserName());
-//
-//                    //starting the activity with intent
-//                    startActivity(intent);
                 }
             });
 
