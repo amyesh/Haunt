@@ -27,7 +27,7 @@
     <string name="no_matches">No matches yet! Keep browsing...</string>
     <string name="match_name">Name</string>
     <string name="birthday">select birthday</string>
-    <string name="callee">client identity or phone number</string>
+    <string name="callee">Enter your match\'s name to call!</string>
     <string name="turn_speaker_on">Speaker ON</string>
     <string name="about_me">Tell me about yourself:</string>
     <string name="have_kids">Do you have kids?</string>

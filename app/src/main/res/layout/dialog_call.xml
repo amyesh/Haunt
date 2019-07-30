@@ -5,6 +5,7 @@
 
     <EditText
         android:layout_width="match_parent"
+        android:fontFamily="@font/apercu_mediumitalic"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -14,10 +15,12 @@
 
     <TextView
         android:id="@+id/text_view_id"
+        android:fontFamily="@font/apercu_bold_italic"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:textSize="22sp"
         android:visibility="visible"/>
 
 </LinearLayout>
