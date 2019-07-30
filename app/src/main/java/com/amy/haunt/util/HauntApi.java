@@ -13,8 +13,17 @@ public class HauntApi extends Application {
     private String kids;
     private String smoking;
     private String drinking;
+    private String zodiac;
     private static HauntApi instance;
     private int position;
+
+    public String getZodiac() {
+        return zodiac;
+    }
+
+    public void setZodiac(String zodiac) {
+        this.zodiac = zodiac;
+    }
 
     public String getKids() {
         return kids;

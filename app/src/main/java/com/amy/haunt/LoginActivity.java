@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     hauntApi.setUserEmail(snapshot.getString("userEmail"));
                                                     hauntApi.setUserId(snapshot.getString("userId"));
                                                     hauntApi.setPreference(snapshot.getString("preference"));
+                                                    hauntApi.setZodiac(snapshot.getString("zodiac"));
                                                     ArrayList<String> genders = (ArrayList<String>) snapshot.get("genders");
                                                     ArrayList<String> likes = (ArrayList<String>) snapshot.get("likes");
                                                     hauntApi.setGenders(genders);

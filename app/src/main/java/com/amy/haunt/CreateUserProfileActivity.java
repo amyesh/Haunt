@@ -307,6 +307,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
                                     HauntApi hauntApi = HauntApi.getInstance();
                                     hauntApi.setUserId(currentUserId);
                                     hauntApi.setLikes(likes);
+                                    hauntApi.setZodiac(zodiac);
 
                                     collectionReference.document(currentUserId)
                                             .set(userProfile, SetOptions.merge())

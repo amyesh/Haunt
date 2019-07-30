@@ -10,14 +10,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/browse_users_name"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/name_user_profile"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/browse_users_name"
+                android:layout_gravity="bottom"
+                android:paddingBottom="5dp"
+                android:layout_width="373dp"
+                android:layout_height="wrap_content"
+                android:text="@string/name_user_profile"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/browse_users_compat"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_moon_black_24dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -77,7 +96,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="18dp"
+                android:layout_height="20dp"
                 android:paddingStart="10dp"
                 android:paddingBottom="2dp"
                 android:src="@drawable/ic_adjust_black_24dp"
@@ -89,16 +108,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/astro_sun"
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:layout_gravity="bottom" />
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="18dp"
-                android:src="@drawable/ic_moon_black_24dp"
+                android:layout_height="20dp"
+                android:src="@drawable/outline_brightness_3_black_18dp"
                 android:paddingBottom="2dp"
                 android:layout_gravity="bottom"
-                android:paddingStart="9dp"/>
+                android:paddingStart="9dp"
+                android:paddingEnd="-7dp"
+                />
 
             <TextView
                 android:id="@+id/browse_users_moon_sign"
@@ -106,12 +127,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/astro_moon"
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:layout_gravity="bottom" />
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="22dp"
                 android:src="@drawable/ic_rising_black_24dp"
                 android:layout_gravity="bottom"
                 android:paddingStart="10dp"/>
@@ -122,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/astro_rising"
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:layout_gravity="bottom" />
 
         </LinearLayout>
@@ -135,22 +156,22 @@
             android:visibility="visible"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="18dp"
-                android:paddingStart="10dp"
-                android:paddingBottom="2dp"
-                android:src="@drawable/ic_cake_black_24dp"
-                android:layout_gravity="bottom" />
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="18dp"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:paddingBottom="2dp"-->
+                <!--android:src="@drawable/ic_cake_black_24dp"-->
+                <!--android:layout_gravity="bottom" />-->
 
-            <TextView
-                android:id="@+id/browse_users_age"
-                android:paddingStart="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/age"
-                android:textSize="16sp"
-                android:layout_gravity="bottom" />
+            <!--<TextView-->
+                <!--android:id="@+id/browse_users_age"-->
+                <!--android:paddingStart="3dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/age"-->
+                <!--android:textSize="16sp"-->
+                <!--android:layout_gravity="bottom" />-->
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -166,6 +187,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/height"
                 android:textSize="16sp"
+                android:textColor="@color/midgrey"
                 android:layout_gravity="bottom" />
 
             <ImageView
@@ -183,12 +205,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/kids"
                 android:textSize="16sp"
+                android:textColor="@color/midgrey"
                 android:layout_gravity="bottom" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="18dp"
-                android:src="@drawable/ic_local_bar_black_24dp"
+                android:src="@drawable/ic_local_bar_grey_24dp"
                 android:layout_gravity="bottom"
                 android:paddingStart="10dp"/>
 
@@ -199,6 +222,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/drinking"
                 android:textSize="16sp"
+                android:textColor="@color/midgrey"
                 android:layout_gravity="bottom" />
 
             <ImageView
@@ -213,8 +237,9 @@
                 android:paddingStart="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/smoking"
+                android:text="@string/drinking"
                 android:textSize="16sp"
+                android:textColor="@color/midgrey"
                 android:layout_gravity="bottom" />
 
         </LinearLayout>

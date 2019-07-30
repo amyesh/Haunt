@@ -40,6 +40,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     private int currentPosition;
     private ArrayList<String> likes;
     private ImageView imageToast;
+    private String currentUserZodiac;
+    private String compatibility;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("Users");
@@ -62,15 +64,19 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     public void onBindViewHolder(@NonNull UserRecyclerAdapter.ViewHolder viewHolder, int position) {
 
         UserProfile userProfile = userProfileList.get(position);
-        String userHeading = userProfile.getFirstName();
+        String userHeading = userProfile.getFirstName() + ", " + userProfile.getAge();
         String sun_sign = userProfile.getZodiac();
         String moon_sign = randomSignFromArray();
         String rising_sign = randomSignFromArray();
-        String age = userProfile.getAge();
         String kids = userProfile.getKids();
         String drinking = userProfile.getDrinking();
         String smoking = userProfile.getSmoking();
         String height = userProfile.getHeight();
+        String compatibility = setCompatibility(sun_sign);
+
+        int id = context.getResources().getIdentifier("com.amy.haunt:drawable/" + compatibility, null, null);
+
+
         String imageUrl;
         viewHolder.blurb.setText(userProfile.getAboutMe());
         viewHolder.name.setText(userHeading);
@@ -80,8 +86,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         viewHolder.smoking.setText(smoking);
         viewHolder.drinking.setText(drinking);
         viewHolder.kids.setText(kids);
-        viewHolder.age.setText(age);
         viewHolder.height.setText(height);
+        viewHolder.compatibility.setImageResource(id);
         imageUrl = userProfile.getProfilePhotoUrl();
 
         if (HauntApi.getInstance() != null) {
@@ -105,6 +111,76 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
     }
 
+    private String setCompatibility(String sunSign) {
+
+        String compatibility = new String();
+
+        ArrayList<String> waterSigns = new ArrayList<>();
+        waterSigns.add("Cancer");
+        waterSigns.add("Scorpio");
+        waterSigns.add("Pisces");
+
+        ArrayList<String> fireSigns = new ArrayList<>();
+        fireSigns.add("Aries");
+        fireSigns.add("Leo");
+        fireSigns.add("Sagittarius");
+
+        ArrayList<String> airSigns = new ArrayList<>();
+        airSigns.add("Gemini");
+        airSigns.add("Libra");
+        airSigns.add("Aquarius");
+
+        ArrayList<String> earthSigns = new ArrayList<>();
+        earthSigns.add("Taurus");
+        earthSigns.add("Virgo");
+        earthSigns.add("Capricorn");
+
+        currentUserZodiac = HauntApi.getInstance().getZodiac();
+
+        if (waterSigns.contains(currentUserZodiac)) {
+            if (waterSigns.contains(sunSign)) {
+                compatibility = "ic_filter_drama_black_24dp";
+            } else if (fireSigns.contains(sunSign)) {
+                compatibility = "ic_extension_black_24dp";
+            } else if (airSigns.contains(sunSign)) {
+                compatibility = "ic_local_pizza_black_24dp";
+            } else {
+                compatibility = "ic_weekend_black_24dp";
+            }
+        } else if (fireSigns.contains(currentUserZodiac)) {
+            if (waterSigns.contains(sunSign)) {
+                compatibility = "ic_extension_black_24dp";
+            } else if (fireSigns.contains(sunSign)) {
+                compatibility = "ic_whatshot_black_24dp";
+            } else if (airSigns.contains(sunSign)) {
+                compatibility = "outline_motorcycle_black_18dp";
+            } else {
+                compatibility = "ic_flash_on_black_24dp";
+            }
+        } else if (airSigns.contains(currentUserZodiac)) {
+            if (waterSigns.contains(sunSign)) {
+                compatibility = "ic_local_pizza_black_24dp";
+            } else if (fireSigns.contains(sunSign)) {
+                compatibility = "outline_motorcycle_black_18dp";
+            } else if (airSigns.contains(sunSign)) {
+                compatibility = "outline_waves_black_18dp";
+            } else {
+                compatibility = "ic_pan_tool_black_24dp";
+            }
+        } else if (earthSigns.contains(currentUserZodiac)) {
+            if (waterSigns.contains(sunSign)) {
+                compatibility = "ic_weekend_black_24dp";
+            } else if (fireSigns.contains(sunSign)) {
+                compatibility = "ic_flash_on_black_24dp";
+            } else if (airSigns.contains(sunSign)) {
+                compatibility = "ic_pan_tool_black_24dp";
+            } else {
+                compatibility = "outline_wb_sunny_black_18dp";
+            }
+        }
+        return compatibility;
+    }
+
     @Override
     public int getItemCount() {
         return userProfileList.size();
@@ -115,21 +191,17 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         public TextView name,
                 sunSign, blurb,
                 moonSign, risingSign,
-                age, height, kids,
+                height, kids,
                 drinking, smoking;
-//        compatibility;
 
         public ImageView image;
-//        public ImageView matchImage;
+        public ImageView compatibility;
         public ImageView likeButton;
 
         public ViewHolder(@NonNull View itemView, Context ctx) {
             super(itemView);
             context = ctx;
 
-//            compatibility = itemView.findViewById(R.id.browse_users_compat);
-//            matchImage = itemView.findViewById(R.id.match_toast_image);
-            age = itemView.findViewById(R.id.browse_users_age);
             height = itemView.findViewById(R.id.browse_users_height);
             kids = itemView.findViewById(R.id.browse_users_kids);
             drinking = itemView.findViewById(R.id.browse_users_drink);
@@ -141,6 +213,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             image = itemView.findViewById(R.id.browse_users_image);
             likeButton = itemView.findViewById(R.id.like_user);
             blurb = itemView.findViewById(R.id.browse_users_blurb);
+            compatibility = itemView.findViewById((R.id.browse_users_compat));
 
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
