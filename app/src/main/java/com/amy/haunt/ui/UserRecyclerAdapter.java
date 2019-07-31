@@ -28,7 +28,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
@@ -64,13 +63,13 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         UserProfile userProfile = userProfileList.get(position);
         String userHeading = userProfile.getFirstName() + ", " + userProfile.getAge();
         String sun_sign = userProfile.getZodiac();
-        String moon_sign = randomSignFromArray();
-        String rising_sign = randomSignFromArray();
         String kids = userProfile.getKids();
         String drinking = userProfile.getDrinking();
         String smoking = userProfile.getSmoking();
         String height = userProfile.getHeight();
         String compatibility = setCompatibility(sun_sign);
+        String moon_sign = userProfile.getMoon();
+        String rising_sign = userProfile.getRising();
 
         int id = context.getResources().getIdentifier("com.amy.haunt:drawable/" + compatibility, null, null);
 
@@ -293,15 +292,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                         }
                     });
         }
-    }
-
-    public String randomSignFromArray()
-    {
-        String[] arr={"Capricorn", "Aquarius", "Virgo", "Taurus", "Sagittarius", "Cancer", "Leo", "Libra", "Aries", "Scorpio", "Gemini", "Pisces"};
-        Random r = new Random();
-        int randomNumber=r.nextInt(arr.length);
-
-        return arr[randomNumber];
     }
 
     private void showToast(String imageUrl) {

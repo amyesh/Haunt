@@ -42,6 +42,10 @@ public class UserProfile implements Parcelable {
     private String drinking;
     @SerializedName("smoking")
     private String smoking;
+    @SerializedName("moon")
+    private String moon;
+    @SerializedName("rising")
+    private String rising;
 
     public UserProfile() {
     }
@@ -52,6 +56,7 @@ public class UserProfile implements Parcelable {
                        String profilePhotoUrl, String preference,
                        String birthday, ArrayList<String> likes,
                        ArrayList<String> matches, String age,
+                       String moon, String rising,
                        String zodiac, ArrayList<String> genders) {
         this.genders = genders;
         this.firstName = firstName;
@@ -69,6 +74,24 @@ public class UserProfile implements Parcelable {
         this.kids = kids;
         this.smoking = smoking;
         this.drinking = drinking;
+        this.moon = moon;
+        this.rising = rising;
+    }
+
+    public String getMoon() {
+        return moon;
+    }
+
+    public void setMoon(String moon) {
+        this.moon = moon;
+    }
+
+    public String getRising() {
+        return rising;
+    }
+
+    public void setRising(String rising) {
+        this.rising = rising;
     }
 
     public String getKids() {

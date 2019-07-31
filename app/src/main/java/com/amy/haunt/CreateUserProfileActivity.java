@@ -35,6 +35,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class CreateUserProfileActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
 
@@ -270,6 +271,8 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
         final String birthday = birthdayTextView.getText().toString().trim();
         final ArrayList<String> likes = new ArrayList<>();
         final ArrayList<String> matches = new ArrayList<>();
+        final String moon = randomSignFromArray();
+        final String rising = randomSignFromArray();
 
         progressBar.setVisibility(View.VISIBLE);
 
@@ -303,6 +306,8 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
                                     userProfile.setMatches(matches);
                                     userProfile.setZodiac(zodiac);
                                     userProfile.setAge(age);
+                                    userProfile.setMoon(moon);
+                                    userProfile.setRising(rising);
 
                                     HauntApi hauntApi = HauntApi.getInstance();
                                     hauntApi.setUserId(currentUserId);
@@ -337,6 +342,15 @@ public class CreateUserProfileActivity extends AppCompatActivity implements Date
         }else {
             progressBar.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public String randomSignFromArray()
+    {
+        String[] arr={"Capricorn", "Aquarius", "Virgo", "Taurus", "Sagittarius", "Cancer", "Leo", "Libra", "Aries", "Scorpio", "Gemini", "Pisces"};
+        Random r = new Random();
+        int randomNumber=r.nextInt(arr.length);
+
+        return arr[randomNumber];
     }
 
     @Override
