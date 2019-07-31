@@ -31,7 +31,6 @@
             android:layout_marginTop="16dp"
             android:hint="@string/first_name_hint"
             android:inputType="textPersonName"
-            android:backgroundTint="@color/black"
             android:maxLines="1" />
 
         <EditText
@@ -39,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:backgroundTint="@color/black"
             android:layout_marginTop="16dp"
             android:hint="@string/last_name_hint"
             android:inputType="textPersonName"
@@ -49,7 +47,6 @@
             android:id="@+id/height_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
             android:layout_marginTop="16dp"
             android:textColor="@color/black"
             android:hint="@string/height_hint"
