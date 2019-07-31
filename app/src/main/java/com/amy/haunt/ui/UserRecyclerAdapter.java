@@ -37,11 +37,9 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     private Context context;
     private List<UserProfile> userProfileList;
     private String currentUserId;
-    private int currentPosition;
     private ArrayList<String> likes;
     private ImageView imageToast;
     private String currentUserZodiac;
-    private String compatibility;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("Users");
@@ -165,7 +163,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             } else if (airSigns.contains(sunSign)) {
                 compatibility = "outline_waves_black_18dp";
             } else {
-                compatibility = "ic_pan_tool_black_24dp";
+                compatibility = "outline_pan_tool_black_18dp";
             }
         } else if (earthSigns.contains(currentUserZodiac)) {
             if (waterSigns.contains(sunSign)) {
@@ -173,7 +171,7 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
             } else if (fireSigns.contains(sunSign)) {
                 compatibility = "ic_flash_on_black_24dp";
             } else if (airSigns.contains(sunSign)) {
-                compatibility = "ic_pan_tool_black_24dp";
+                compatibility = "outline_pan_tool_black_18dp";
             } else {
                 compatibility = "outline_wb_sunny_black_18dp";
             }
@@ -224,7 +222,6 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
 
                     if (HauntApi.getInstance() != null) {
                         currentUserId = HauntApi.getInstance().getUserId();
-                        //TODO: remove this?
                         HauntApi.getInstance().setPosition(position);
                     }
                     saveUserLike(likedUserId);
@@ -271,8 +268,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
         }
 
         private void createMatch(final String likedUser, final String currentUserId) {
-            collectionReference.document(currentUserId)
-                    .update("matches", FieldValue.arrayUnion(likedUser))
+            collectionReference.document(likedUser)
+                    .update("matches", FieldValue.arrayUnion(currentUserId))
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -283,8 +280,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
                         public void onFailure(@NonNull Exception e) {
                         }
                     });
-            collectionReference.document(likedUser)
-                    .update("matches", FieldValue.arrayUnion(currentUserId))
+            collectionReference.document(currentUserId)
+                    .update("matches", FieldValue.arrayUnion(likedUser))
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -308,7 +305,8 @@ public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapte
     }
 
     private void showToast(String imageUrl) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        LayoutInflater inflater = LayoutInflater.from(context);
+        Log.d("wttf", "showToast: " + context);
         View layout = inflater.inflate( R.layout.match_toast, null );
         imageToast = layout.findViewById(R.id.match_toast_image);
 

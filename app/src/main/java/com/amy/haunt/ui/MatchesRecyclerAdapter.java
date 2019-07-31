@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amy.haunt.R;
@@ -72,7 +71,6 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
 
         public TextView name;
         public ImageView image;
-        public CardView viewProfileButton;
         public FloatingActionButton callButton;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
@@ -81,26 +79,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
 
             name = itemView.findViewById(R.id.match_name);
             image = itemView.findViewById(R.id.match_image);
-//            viewProfileButton = itemView.findViewById(R.id.match_cardview);
             callButton = itemView.findViewById(R.id.match_call);
-//            viewProfileButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    //Todo: Add functionality to view user profile
-////                    int position = getLayoutPosition();
-////
-////                    //creating an intent
-////                    Intent intent = new Intent(getApplicationContext(), ViewProfileActivity.class);
-////
-////                    //putting artist name and id to intent
-////
-////                    intent.putExtra(MATCH_USER_ID, userProfile.getUserId());
-////                    intent.putExtra(MATCH_NAME, userProfile.getUserName());
-////
-////                    //starting the activity with intent
-////                    startActivity(intent);
-//                }
-//            });
 
             callButton.setOnClickListener(new View.OnClickListener() {
                 @Override

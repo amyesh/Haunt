@@ -455,7 +455,6 @@ public class VoiceActivity extends AppCompatActivity {
 //        return new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                //Todo: alter this alertDialog to be recyler view data - intent?
 //                alertDialog = createCallDialog(callClickListener(), cancelCallClickListener(), VoiceActivity.this);
 //                alertDialog.show();
 //            }
@@ -655,9 +654,7 @@ public class VoiceActivity extends AppCompatActivity {
         LayoutInflater li = LayoutInflater.from(context);
         View dialogView = li.inflate(R.layout.dialog_call, null);
         final EditText contact = (EditText) dialogView.findViewById(R.id.contact);
-        //TOdo: set text dynamically through intent?
         contact.setText(name);
-//        contact.setHint(R.string.callee);
         alertDialogBuilder.setView(dialogView);
 
         return alertDialogBuilder.create();

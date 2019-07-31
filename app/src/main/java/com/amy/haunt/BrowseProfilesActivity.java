@@ -84,11 +84,16 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                     case R.id.action_matches:
                         startActivity(new Intent(BrowseProfilesActivity.this, ViewMatchesActivity.class));
                         break;
+
                     case R.id.action_signout:
-                        Intent c = new Intent(BrowseProfilesActivity.this, LoginActivity.class);
-                        startActivity(c);
-                        finish();
-                        break;
+                        if (user != null && firebaseAuth != null) {
+                            firebaseAuth.signOut();
+                            HauntApi.getInstance().setPosition(0);
+                            Intent c = new Intent(BrowseProfilesActivity.this, LoginActivity.class);
+                            startActivity(c);
+                            finish();
+                            break;
+                        }
                 }
                 return false;
             }
@@ -177,9 +182,7 @@ public class BrowseProfilesActivity extends AppCompatActivity {
                                         usersList);
                                 recyclerView.setAdapter(userRecyclerAdapter);
                                 userRecyclerAdapter.notifyDataSetChanged();
-//                                if (HauntApi.getInstance().getPosition() != 0) {
                                 recyclerView.scrollToPosition(HauntApi.getInstance().getPosition());
-//                                }
                             } else {
                                 noUsersToBrowse.setVisibility(View.VISIBLE);
                             }

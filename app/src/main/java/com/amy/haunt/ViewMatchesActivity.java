@@ -79,9 +79,14 @@ public class ViewMatchesActivity extends AppCompatActivity {
                     case R.id.action_matches:
                         break;
                     case R.id.action_signout:
-                        Intent c = new Intent(ViewMatchesActivity.this, LoginActivity.class);
-                        startActivity(c);
-                        break;
+                        if (user != null && firebaseAuth != null) {
+                            firebaseAuth.signOut();
+                            HauntApi.getInstance().setPosition(0);
+                            Intent c = new Intent(ViewMatchesActivity.this, LoginActivity.class);
+                            startActivity(c);
+                            finish();
+                            break;
+                        }
                 }
                 return false;
             }

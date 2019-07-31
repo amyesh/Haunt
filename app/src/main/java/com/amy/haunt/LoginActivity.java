@@ -3,6 +3,7 @@ package com.amy.haunt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -116,6 +117,9 @@ public class LoginActivity extends AppCompatActivity {
                                                     ArrayList<String> likes = (ArrayList<String>) snapshot.get("likes");
                                                     hauntApi.setGenders(genders);
                                                     hauntApi.setLikes(likes);
+
+                                                    Log.d("wth", "login: " + HauntApi.getInstance().getUserId() + currentUserId + hauntApi.getPreference() );
+
 
                                                     startActivity(new Intent(LoginActivity.this,
                                                             BrowseProfilesActivity.class));
